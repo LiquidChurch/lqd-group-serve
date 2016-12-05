@@ -33,6 +33,7 @@ class LQD_Group_Guides_CPT {
 			'parent_item_colon'  => _x ('Parent Guides:', 'lqd-group-guides' ),
 			'not_found'          => _x ('No guide found.', 'lqd-group-guides' ),
 			'not_found_in_trash' => _x ('No guide found in Trash.', 'lqd-group-guides' ),
+            'label'              => _x ('Group Guides', 'lqd-group-guides' )
 		);
 
 		// Define CPT.
@@ -50,7 +51,8 @@ class LQD_Group_Guides_CPT {
 		);
 
 		// Register CPT.
-		register_post_type( 'group-guides', array( 'public' => true, 'label' => 'Group Guides' ) );
+        // array( 'public' => true, 'label' => 'Group Guides')
+		register_post_type( 'group-guides', $args );
 
 	}
 
