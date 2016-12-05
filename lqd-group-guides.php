@@ -12,8 +12,13 @@ License: GPL2
 
 class LQD_Group_Guides_CPT {
 
+    /* TODO: Flush permalinks on activation. */
+
 	function __construct() {
 		add_action( 'init', array( $this, 'lqd_group_guides_cpt' ) );
+        add_action( 'init', 'lqd_register_taxonomy_type' );
+        add_action( 'init', 'lqd_register_taxonomy_tags' );
+        add_action( 'init', 'lqd_register_taxonomy_series' );
 	}
 
 	function lqd_group_guides_cpt() {
@@ -33,7 +38,6 @@ class LQD_Group_Guides_CPT {
 			'parent_item_colon'  => _x ('Parent Guides:', 'lqd-group-guides' ),
 			'not_found'          => _x ('No guide found.', 'lqd-group-guides' ),
 			'not_found_in_trash' => _x ('No guide found in Trash.', 'lqd-group-guides' ),
-            'label'              => _x ('Group Guides', 'lqd-group-guides' )
 		);
 
 		// Define CPT.
@@ -46,8 +50,8 @@ class LQD_Group_Guides_CPT {
 			'menu_position' => 30,
 			'public'        => true,
 			'rewrite'       => 'group-guides',
-			'supports'      => 'title, editor, author, thumbnail, excerpt, trackbacks, custom-fields, comments, revisions, page-attributes, post-formats',
-			'taxonomies'    => array( 'post_tag' ), // used to be array( 'post_tag' )
+			'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'post-formats' ),
+			// 'taxonomies'    => array( 'post_tag' ),
 		);
 
 		// Register CPT.
@@ -87,8 +91,6 @@ function lqd_register_taxonomy_type() {
 	register_taxonomy( 'group-type', array( 'group-guides' ), $args );
 }
 
-add_action( 'init', 'lqd_register_taxonomy_type' );
-
 function lqd_register_taxonomy_tags() {
 	// Define labels for taxonomy
 	$labels = array(
@@ -118,8 +120,6 @@ function lqd_register_taxonomy_tags() {
 	register_taxonomy( 'group-tag', array( 'group-guides' ), $args );
 }
 
-add_action( 'init', 'lqd_register_taxonomy_tags' );
-
 function lqd_register_taxonomy_series() {
 	// Define labels for taxonomy
 	$labels = array(
@@ -148,7 +148,5 @@ function lqd_register_taxonomy_series() {
 	// Register taxonomy.
 	register_taxonomy( 'group-series', array( 'group-guides' ), $args );
 }
-
-add_action( 'init', 'lqd_register_taxonomy_series' );
 
 $LQD_Group_Guides_CPT = new LQD_Group_Guides_CPT;
