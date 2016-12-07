@@ -150,3 +150,25 @@ function lqd_register_taxonomy_series() {
 }
 
 $LQD_Group_Guides_CPT = new LQD_Group_Guides_CPT;
+
+add_shortcode('group-guides', 'groupguides_query');
+
+function groupguides_query(){
+        $args = array(
+            'post_type' => 'lqd-group-guides',
+            'post_status' => 'publish'
+        );
+
+        $string = '';
+        $query = new WP_Query( $args );
+        if( $query->have_posts() ){
+            $string .= '<ul>';
+            while( $query->have_posts() ){
+                $query->the_post();
+                $string .= '<li>' . get_the_title() . '</li>';
+            }
+            $string .= '</ul>';
+        }
+        wp_reset_postdata();
+        return $string;
+    }
