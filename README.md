@@ -1,5 +1,7 @@
 # Liquid Group Guides
 
+Version: 0.3 (12/9/16)
+
 A WordPress plugin that allows for the creation and posting of group guides to a WordPress site.
 
 ## Underlying Implementation
@@ -12,8 +14,9 @@ We recommend using Just Tadlock's Members plugin to restrict users to utilizing 
 
 ## ToDo
 
-* Shortcode to allow embedding leader guide archives on a page
-* Shortcode to allow embedding member guide archives on a page 
+* Shortcodes currently use wordpress install specific term ids, need to make generic.
+* Flush permalinks during activation.
+* Auto-create guide types during activation.
 
 ## Authors
 
