@@ -150,3 +150,83 @@ function lqd_register_taxonomy_series() {
 }
 
 $LQD_Group_Guides_CPT = new LQD_Group_Guides_CPT;
+
+// Define Shortcodes
+// Pulls all posts of CPT group-guides
+add_shortcode('group-guides','group_guides_query');
+
+function group_guides_query() {
+    $args = array(
+        'post_type'    => 'group-guides',
+        'post_status'  => 'publish'
+    );
+
+    $string = '';
+    $query = new WP_Query( $args );
+    if( $query->have_posts() ) {
+        $string .= '<ul>';
+        while( $query->have_posts() ) {
+            $query->the_post();
+            $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
+        }
+        $string .= '</ul>';
+    }
+    wp_reset_postdata();
+    return $string;
+}
+
+add_shortcode('leader-guides','leader_guides_query');
+
+function leader_guides_query() {
+    $args = array(
+        'post_type' => 'group-guides',
+        'tax_query' => array(
+            array(
+             'taxonomy' => 'group-type',
+             'field' => 'term_id',
+             'terms' => 261, // TODO: Make generic
+              ),
+        ),
+    );
+
+    $string = '';
+    $query = new WP_Query( $args );
+    if( $query->have_posts() ) {
+        $string .= '<ul>';
+        while( $query->have_posts() ) {
+            $query->the_post();
+            $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
+        }
+        $string .= '</ul>';
+    }
+    wp_reset_postdata();
+    return $string;
+}
+
+add_shortcode('leader-guides','leader_guides_query');
+
+function member_guides_query() {
+    $args = array(
+        'post_type' => 'group-guides',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'group-type',
+                'field' => 'term_id',
+                'terms' => 262,  // TODO: Make generic
+            ),
+        ),
+    );
+
+    $string = '';
+    $query = new WP_Query( $args );
+    if( $query->have_posts() ) {
+        $string .= '<ul>';
+        while( $query->have_posts() ) {
+            $query->the_post();
+            $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
+        }
+        $string .= '</ul>';
+    }
+    wp_reset_postdata();
+    return $string;
+}
