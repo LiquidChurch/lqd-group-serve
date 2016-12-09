@@ -17,4 +17,4 @@ We recommend using Just Tadlock's Members plugin to restrict users to utilizing 
 
 ## Authors
 
-This plugin is a project of Liquid Church developed by Dave Mackey (@davidshq) and Rick Murtagh (@remurtagh).
+This plugin is a project of Liquid Church developed by Dave Mackey (<a href="https://github.com/davidshq">davidshq</a>) and Rick Murtagh (<a href="https://github.com/rmurtagh">@rmurtagh</a>).
