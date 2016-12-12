@@ -14,6 +14,9 @@ class LQD_Group_Guides_CPT {
 
     /* TODO: Flush permalinks on activation. */
 
+    /*
+     * Constructor: Called when plugin is initalized.
+     */
 	function __construct() {
 		add_action( 'init', array( $this, 'lqd_group_guides_cpt' ) );
         add_action( 'init', 'lqd_register_taxonomy_type' );
@@ -21,6 +24,60 @@ class LQD_Group_Guides_CPT {
         add_action( 'init', 'lqd_register_taxonomy_series' );
 	}
 
+	/**
+     * Activation Hook: Registers Group Guides Role to Group Guides CPT
+     */
+	function plugin_activation() {
+	     // Define our custom capabilities
+        $customCaps = array(
+            'edit_others_guides'          => true,
+            'delete_others_guides'        => true,
+            'delete_private_guides'       => true,
+            'edit_private_guides'         => true,
+            'read_private_guides'         => true,
+            'edit_published_guides'       => true,
+            'publish_guides'              => true,
+            'delete_published_guides'     => true,
+            'edit_guides'                 => true,
+            'delete_guides'               => true,
+            'edit_guide'                  => true,
+            'read_guide'                  => true,
+            'delete_guide'                => true,
+            'read'                        => true,
+    );
+
+    // Create our Group Guides role and assign the custom capabilities to it
+    add_role( 'group_guide_editor', __( 'Group Guide Editor', 'lqd-group-guides' ), $customCaps );
+
+    // Add custom capabilities to Admin and Editor Roles
+     $roles = array( 'administrator', 'editor' );
+     foreach ( $roles as $roleName ) {
+         // Get role
+         $role = get_role( $roleName );
+
+         // Check role exists
+         if ( is_null( $role) ) {
+             continue;
+         }
+
+         // Iterate through our custom capabilities, adding them
+         // to this role if they are enabled
+         foreach ( $customCaps as $capability => $enabled ) {
+             if ( $enabled ) {
+                 // Add capability
+                 $role->add_cap( $capability );
+             }
+         }
+     }
+	}
+
+	function plugin_deactivation() {
+	    remove_role (group_guide_editor);
+    }
+
+    /**
+     * Registers a Custom Post Type: Group Guides.
+     */
 	function lqd_group_guides_cpt() {
 		// Define the labels for CPT.
 		$labels = array(
@@ -51,7 +108,22 @@ class LQD_Group_Guides_CPT {
 			'public'        => true,
 			'rewrite'       => 'group-guides',
 			'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'post-formats' ),
-			// 'taxonomies'    => array( 'post_tag' ),
+            'capabilities'  => array(
+                'edit_others_posts'     => 'edit_others_guides',
+                'delete_others_posts'   => 'delete_others_guides',
+                'delete_private_posts'  => 'delete_private_guides',
+                'edit_private_posts'    => 'edit_private_guides',
+                'read_private_posts'    => 'read_private_guides',
+                'edit_published_posts'  => 'edit_published_guides',
+                'publish_posts'         => 'publish_guides',
+                'delete_published_posts'=> 'delete_published_guides',
+                'edit_posts'            => 'edit_guides'   ,
+                'delete_posts'          => 'delete_guides',
+                'edit_post'             => 'edit_guide',
+                'read_post'             => 'read_guide',
+                'delete_post'           => 'delete_guide',
+                ),
+            'map_meta_cap' => true,
 		);
 
 		// Register CPT.
@@ -230,3 +302,5 @@ function member_guides_query() {
     wp_reset_postdata();
     return $string;
 }
+register_activation_hook( __FILE__, array( &$LQD_Group_Guides_CPT, 'plugin_activation' ) );
+register_deactivation_hook( __FILE__, array( &$LQD_Group_Guides_CPT, 'plugin_deactivation' ) );
