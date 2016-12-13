@@ -2,9 +2,9 @@
 
 /*
 Plugin Name: Liquid Group Guides
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+Plugin URI: https://github.com/LiquidChurch/lqd-group-guides
 Description: Creates a Custom Post Type for Group Guides.
-Version: 0.3
+Version: 0.4
 Author: Liquid Church, Dave Mackey
 Author URI: http://www.liquidchurch.com/
 License: GPL2
@@ -30,6 +30,7 @@ class LQD_Group_Guides_CPT {
 	function plugin_activation() {
 	     // Define our custom capabilities
         $customCaps = array(
+            // Permissions for Guide CPT
             'edit_others_guides'          => true,
             'delete_others_guides'        => true,
             'delete_private_guides'       => true,
@@ -44,6 +45,23 @@ class LQD_Group_Guides_CPT {
             'read_guide'                  => true,
             'delete_guide'                => true,
             'read'                        => true,
+            // Permissions for Guide Type Taxonomy
+            'manage_group_types'          => true,
+            'edit_group_types'            => true,
+            'delete_group_types'          => true,
+            'assign_group_types'          => true,
+            // Permissions for Guide Tags Taxonomy
+            'manage_group_guide_tags'     => true,
+            'edit_group_guide_tags'       => true,
+            'delete_group_guide_tags'     => true,
+            'assign_group_guide_tags'     => true,
+            // Permissions for Guide Series Taxonomy
+            'manage_group_guide_series'     => true,
+            'edit_group_guide_series'       => true,
+            'delete_group_guide_series'     => true,
+            'assign_group_guide_series'     => true
+
+
     );
 
     // Create our Group Guides role and assign the custom capabilities to it
@@ -157,6 +175,13 @@ function lqd_register_taxonomy_type() {
 		'show_admin_column'       => true,
 		'query_var'               => true,
 		'rewrite'                 => array( 'slug' => 'group-type' ),
+        'capabilities'            => array(
+            'manage_terms'          => 'manage_group_types',
+            'edit_terms'            => 'edit_group_types',
+            'delete_terms'          => 'delete_group_types',
+            'assign_terms'          => 'assign_group_types'
+        ),
+        'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
@@ -186,6 +211,13 @@ function lqd_register_taxonomy_tags() {
 		'show_admin_column'       => true,
 		'query_var'               => true,
 		'rewrite'                 => array( 'slug' => 'group-tag' ),
+        'capabilities'            => array(
+            'manage_terms'          => 'manage_group_guide_tags',
+            'edit_terms'            => 'edit_group_guide_tags',
+            'delete_terms'          => 'delete_group_guide_tags',
+            'assign_terms'          => 'assign_group_guide_tags'
+        ),
+        'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
@@ -215,6 +247,13 @@ function lqd_register_taxonomy_series() {
 		'show_admin_column'       => true,
 		'query_var'               => true,
 		'rewrite'                 => array( 'slug' => 'group-series' ),
+        'capabilities'            => array(
+            'manage_terms'          => 'manage_group_guide_series',
+            'edit_terms'            => 'edit_group_guide_series',
+            'delete_terms'          => 'delete_group_guide_series',
+            'assign_terms'          => 'assign_group_guide_series'
+        ),
+        'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
