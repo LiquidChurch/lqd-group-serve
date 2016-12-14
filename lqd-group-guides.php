@@ -4,7 +4,7 @@
 Plugin Name: Liquid Group Guides
 Plugin URI: https://github.com/LiquidChurch/lqd-group-guides
 Description: Creates a Custom Post Type for Group Guides.
-Version: 0.4.1
+Version: 0.4.2
 Author: Liquid Church, Dave Mackey
 Author URI: http://www.liquidchurch.com/
 License: GPL2
@@ -45,20 +45,20 @@ class LQD_Group_Guides_CPT {
             'delete_guide'                => true,
             'read'                        => true,
             // Permissions for Guide Type Taxonomy
-            'manage_group_types'          => true,
-            'edit_group_types'            => true,
-            'delete_group_types'          => true,
-            'assign_group_types'          => true,
+            'manage_guide_types'          => true,
+            'edit_guide_types'            => true,
+            'delete_guide_types'          => true,
+            'assign_guide_types'          => true,
             // Permissions for Guide Tags Taxonomy
-            'manage_group_guide_tags'     => true,
-            'edit_group_guide_tags'       => true,
-            'delete_group_guide_tags'     => true,
-            'assign_group_guide_tags'     => true,
+            'manage_guide_tags'     => true,
+            'edit_guide_tags'       => true,
+            'delete_guide_tags'     => true,
+            'assign_guide_tags'     => true,
             // Permissions for Guide Series Taxonomy
-            'manage_group_guide_series'     => true,
-            'edit_group_guide_series'       => true,
-            'delete_group_guide_series'     => true,
-            'assign_group_guide_series'     => true
+            'manage_guide_series'     => true,
+            'edit_guide_series'       => true,
+            'delete_guide_series'     => true,
+            'assign_guide_series'     => true
     );
 
     // Create our Group Guides role and assign the custom capabilities to it
@@ -164,10 +164,10 @@ function lqd_register_taxonomy_type() {
 	);
 	// Define capabilities of taxonomy
     $capabilities = array(
-        'manage_terms'          => 'manage_group_types',
-        'edit_terms'            => 'edit_group_types',
-        'delete_terms'          => 'delete_group_types',
-        'assign_terms'          => 'assign_group_types'
+        'manage_terms'          => 'manage_guide_types',
+        'edit_terms'            => 'edit_guide_types',
+        'delete_terms'          => 'delete_guide_types',
+        'assign_terms'          => 'assign_guide_types'
     );
     // Define taxonomy
 	$args = array(
@@ -202,10 +202,10 @@ function lqd_register_taxonomy_tags() {
 	);
 	// Define taxonomy
     $capabilities = array (
-        'manage_terms'          => 'manage_group_guide_tags',
-        'edit_terms'            => 'edit_group_guide_tags',
-        'delete_terms'          => 'delete_group_guide_tags',
-        'assign_terms'          => 'assign_group_guide_tags'
+        'manage_terms'          => 'manage_guide_tags',
+        'edit_terms'            => 'edit_guide_tags',
+        'delete_terms'          => 'delete_guide_tags',
+        'assign_terms'          => 'assign_guide_tags'
     );
 	$args = array(
 		'hierarchical'            => false,
@@ -239,10 +239,10 @@ function lqd_register_taxonomy_series() {
 	);
 	// Define taxonomy
     $capabilities = array (
-        'manage_terms'          => 'manage_group_series',
-        'edit_terms'            => 'edit_group_series',
-        'delete_terms'          => 'delete_group_series',
-        'assign_terms'          => 'assign_group_guide_series'
+        'manage_terms'          => 'manage_guide_series',
+        'edit_terms'            => 'edit_guide_series',
+        'delete_terms'          => 'delete_guide_series',
+        'assign_terms'          => 'assign_guide_series'
     );
 
 	$args = array(
