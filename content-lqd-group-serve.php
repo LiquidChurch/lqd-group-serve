@@ -15,7 +15,7 @@
 		/*if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 			<span class="sticky-post"><?php _e( 'Featured', 'liquidchurch' ); ?></span>*/ ?>
 		<?php // endif; ?>
-		<?php the_title( sprintf( '<h3 class="page-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>' ); ?>
+		<?php the_title( sprintf( '<h3 class="page-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h3>   ' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -39,28 +39,38 @@
         <?php
             $string = '';
             $terms = '';
-            $string .= '<p>';
-        /*while (have_posts() ) : the_post();{*/
-        $terms = get_the_term_list($id, 'Host-URL','   (', '', ' ) ');
+            $terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+            $string .= $terms;
+            $terms = get_field('sign_up_to_serve');
+		    $string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+		$terms = '';
 
-        $string .=$terms . '</p>';
+		$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+		$string .= $terms;
+		$terms = get_field('host_url');
+		$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+        /*while (have_posts() ) : the_post();{*/
+        $string .= '</p> ';
         $terms = get_the_content() . '';
         $string .=$terms .'<p>';
-        $terms = get_the_term_list($id, 'DOW', '   Day: ', ' : ', ' : ');
+        $terms = get_the_term_list($id, 'DOW', '   Day(s): ', ' : ', ' : ');
         $string .=$terms;
-        $terms = get_the_term_list($id, 'project-location', 'Location: ', ' : ', ' : ');
+        $terms = get_the_term_list($id, 'project-location', 'County/Campus: ', ' : ', ' : ');
         $string .=$terms;
-        $terms = get_the_term_list($id, 'FFRating', 'FFRating: ', ' : ', ' : ');
+        //$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+		$terms = get_field('family_friendly_rating');
+        $string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+        //$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+		$terms = get_field('number_of_participants');
+		$string .= 'Team size: ' . $terms .'<br/>';
+        $terms = get_the_term_list($id, 'Host-Org', '    Host Organisation: ', '', ' : ');
         $string .=$terms;
-        $terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', ' : ');
-        $string .=$terms .'<br/>';
-        $terms = get_the_term_list($id, 'Host-Org', '    Host Organisation: ', '', '');
-        $string .=$terms;
-        $terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-        $string .=$terms;
+        //$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+        //$string .=$terms;
         $terms = get_the_term_list($id, 'date', 'Dates: ', ' : ', '');
 		$string .=$terms;
-		$terms = get_the_term_list($id, 'project-type', '   Type: ', ' : ', ' ');
+		$terms = get_the_term_list($id, 'project-type', '   Compassion Focus: ', ' : ', ' ');
 		$string .=$terms;
         /*}*/
         echo $string;

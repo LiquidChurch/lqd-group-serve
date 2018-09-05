@@ -14,8 +14,7 @@
 			<span class="sticky-post"><?php _e( 'Featured', 'liquidchurch' ); ?></span>
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
-	</header><!-- .entry-header -->
+		<?php the_title( sprintf( '<div class="body-text"><h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2></div>
 
 	<?php liquidchurch_excerpt(); ?>
 

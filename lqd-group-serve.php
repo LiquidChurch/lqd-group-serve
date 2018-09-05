@@ -27,6 +27,7 @@ class LQD_Group_Serve_CPT {
 		add_action( 'init', 'lqd_register_taxonomy_project_host_organisation' );
 		add_action( 'init', 'lqd_register_taxonomy_project_occurs' );
 		add_action( 'init', 'lqd_register_taxonomy_project_team_size');
+		//add_action( 'init', 'lqd_register_taxonomy_project_signup');
 	}
 
 	/**
@@ -94,6 +95,11 @@ class LQD_Group_Serve_CPT {
             'edit_project_team_sizes'       => true,
             'delete_project_team_sizes'     => true,
             'assign_project_team_sizes'     => true
+	        /* Permissions for signup Taxonomy
+            'manage_project_signup'         => true,
+            'edit_project_signup'           => true,
+            'delete_project_signup'         => true,
+            'assign_project_signup'          => true*/
     );
 
     // Create our Group Serve role and assign the custom capabilities to it
@@ -227,8 +233,8 @@ function lqd_register_taxonomy_project_dow() {
 		'singular_name'     => _x( 'DOW', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search DOW' ),
 		'all_items'         => __( 'All DOW' ),
-		'parent_item'       => __( 'Parent DOW' ),
-		'parent_item_colon' => __( 'Parent DOW:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit DOW' ),
 		'update_item'       => __( 'Update DOW' ),
 		'add_new_item'      => __( 'Add New DOW' ),
@@ -304,8 +310,8 @@ function lqd_register_taxonomy_project_dates() {
 		'singular_name'     => _x( 'Date', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Dates' ),
 		'all_items'         => __( 'All Dates' ),
-		'parent_item'       => __( 'Parent Date' ),
-		'parent_item_colon' => __( 'Parent Date:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit Date' ),
 		'update_item'       => __( 'Update Date' ),
 		'add_new_item'      => __( 'Add New Date' ),
@@ -341,8 +347,8 @@ function lqd_register_taxonomy_Project_FFRating() {
 		'singular_name'     => _x( 'FFRating', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search FFRatings' ),
 		'all_items'         => __( 'All FFRatings' ),
-		'parent_item'       => __( 'Parent FFRating' ),
-		'parent_item_colon' => __( 'Parent FFRating:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit FFRating' ),
 		'update_item'       => __( 'Update FFRating' ),
 		'add_new_item'      => __( 'Add New FFRating' ),
@@ -378,8 +384,8 @@ function lqd_register_taxonomy_project_host_organisation() {
 		'singular_name'     => _x( 'Host Org', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Host Org' ),
 		'all_items'         => __( 'All Host Org' ),
-		'parent_item'       => __( 'Parent Host Org' ),
-		'parent_item_colon' => __( 'Parent Host Org:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit Host Org' ),
 		'update_item'       => __( 'Update Host Org' ),
 		'add_new_item'      => __( 'Add New Host Org' ),
@@ -407,6 +413,8 @@ function lqd_register_taxonomy_project_host_organisation() {
 	// Register taxonomy.
 	register_taxonomy( 'Host-Org', array( 'lqd-group-serve' ), $args );
 }
+
+/* This is now a custom field */
 function lqd_register_taxonomy_project_host_url() {
 	// Define labels for taxonomy Host URL
 	$labels = array(
@@ -414,8 +422,8 @@ function lqd_register_taxonomy_project_host_url() {
 		'singular_name'     => _x( 'Host URL', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Host URLs' ),
 		'all_items'         => __( 'All Host URLs' ),
-		'parent_item'       => __( 'Parent Host URL' ),
-		'parent_item_colon' => __( 'Parent Host URL:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit Host URL' ),
 		'update_item'       => __( 'Update Host URL' ),
 		'add_new_item'      => __( 'Add New Host URL' ),
@@ -452,8 +460,8 @@ function lqd_register_taxonomy_project_occurs() {
 		'singular_name'     => _x( 'Occurs', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search Occurences' ),
 		'all_items'         => __( 'All Occurences' ),
-		'parent_item'       => __( 'Parent occurences' ),
-		'parent_item_colon' => __( 'Parent occurences:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit occurence' ),
 		'update_item'       => __( 'Update occurence' ),
 		'add_new_item'      => __( 'Add occurences' ),
@@ -490,8 +498,8 @@ function lqd_register_taxonomy_project_team_size() {
 		'singular_name'     => _x( 'Team size', 'taxonomy singular name' ),
 		'search_items'      => __( 'Search team sizes' ),
 		'all_items'         => __( 'All team sizes' ),
-		'parent_item'       => __( 'Parent team size' ),
-		'parent_item_colon' => __( 'Parent team size:'),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
 		'edit_item'         => __( 'Edit team size' ),
 		'update_item'       => __( 'Update team size' ),
 		'add_new_item'      => __( 'Add team size' ),
@@ -520,6 +528,45 @@ function lqd_register_taxonomy_project_team_size() {
 	// Register taxonomy.
 	register_taxonomy( 'team-size', array( 'lqd-group-serve' ), $args );
 }
+
+function lqd_register_taxonomy_project_signup() {
+	// Define labels for taxonomy Project Occurs: Year round, Love Week, Christmas Outreach, One Off
+	$labels = array(
+		'name'              => _x( 'Signup', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Signup', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search signup' ),
+		'all_items'         => __( 'All signups' ),
+		'parent_item'       => null,
+		'parent_item_colon' => null,
+		'edit_item'         => __( 'Edit signup' ),
+		'update_item'       => __( 'Update signup' ),
+		'add_new_item'      => __( 'Add signup' ),
+		'new_item_name'     => __( 'New signup Name' ),
+		'menu_name'         => __( 'Signup' ),
+	);
+	// Define taxonomy
+	$capabilities = array (
+		'manage_terms'          => 'manage_project_signup',
+		'edit_terms'            => 'edit_project_signup',
+		'delete_terms'          => 'delete_project_signup',
+		'assign_terms'          => 'assign_project_signup'
+	);
+
+	$args = array(
+		'hierarchical'            => false,
+		'labels'                  => $labels,
+		'show_ui'                 => false,
+		'show_admin_column'       => true,
+		'query_var'               => false,
+		'rewrite'                 => array( 'slug' => 'signup' ),
+		'capabilities'            => $capabilities,
+		'map_meta_cap'            => 'true'
+	);
+
+	// Register taxonomy.
+	register_taxonomy( 'signup', array( 'lqd-group-serve' ), $args );
+}
+
 
 
 $LQD_Group_Serve_CPT = new LQD_Group_Serve_CPT;
@@ -553,30 +600,7 @@ function group_serve_query() {
 	      //  print_r($terms);
 	        $string .=$terms;
 	        $terms = get_the_term_list($query->ID, 'project-location', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
-	    /*    $string .=$terms;
-	      //  $terms = get_the_term_list($query->ID, 'project-type', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
 	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'Host-Org', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'Host-URL', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'FFRating', '<li>', '</li><li>', '</li>');
-	        //print_r($terms);
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'DOW', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'date', '<li>', '</li><li>', '</li>');
-	       // print_r($terms);
-	        $string .=$terms;
-	        $terms = wp_get_post_terms($query->ID, 'occurs', array("fields" => "all"));
-	        //print_r($terms);
-	        $term_list = wp_get_post_terms($query->ID, 'DOW', array("fields" => "names"));
-	        $string .= $term_list;*/
         }
         $string .= '</ul>';
     }
@@ -604,17 +628,17 @@ function group_serve_query_line() {
 			$query->the_post();
 			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a>';
 			//Returns All Term Items for "my_taxonomy"
-			$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Type: ', ' : ', ' ');
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			$terms = get_the_term_list($query->ID, 'project-type', ' Compassion Focus: ', ' : ', ' ');
 			$string .=$terms;
 			$terms = get_the_content() . '';
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'Location: ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'FFRating', 'FFRating: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
 			$string .=$terms;
@@ -631,100 +655,6 @@ function group_serve_query_line() {
 	return $string;
 }
 
-
-
-
-
-//add_shortcode('group-tax','group_tax');
-//function group_tax() {
-	/* Add your taxonomy. */
-//	$taxonomies = array(
-//		'DOW',
-//	);
-//$result = '';
-
-/*	$args = array(
-		'orderby'           => 'name',
-		'order'             => 'ASC',
-		'hide_empty'        => true,
-		'exclude'           => array(),
-		'exclude_tree'      => array(),
-		'include'           => array(),
-		'number'            => '',
-		'fields'            => 'terms',
-		'slug'              => '',
-		'parent'            => '',
-		'hierarchical'      => true,
-		'child_of'          => 0,
-		'get'               => '',
-		'name__like'        => '',
-		'description__like' => '',
-		'pad_counts'        => false,
-		'offset'            => '',
-		'search'            => '',
-		'cache_domain'      => 'core'
-//	);
-*/
-//	$terms = get_terms( $taxonomies, $args );
-//	foreach ( $terms as $term ) {
-//		$result .=$terms;
-
-
-// here's my code for getting the posts for custom post type
-
-//		$posts_array = get_posts(
-//			array( 'showposts' => -1,
-//			       'post_type' => 'lqd-group-serve',
-//			       'tax_query' => array(
-//				       array(
-//					       'taxonomy' => 'DOW',
-//					       'field' => term_id,
-//					       'terms' => $term->name,
-//				       )
-//			       )
-//			)
-//		);
-//		print_r( $posts_array );
-//	}
-//	return $result;
-//}
-
-add_shortcode('group-serve-t','group_serve_query_t');
-
-function group_serve_query_t() {
-	$args = array(
-		'post_type'       => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-	);
-	$string = '';
-
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-
-		$terms = get_terms( 'post_tag', array('taxonomy' => 'post_tag',
-			'hide_empty' => false,
-		) );
-			$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'location', 'Location: ', ' : ', ' : ');
-			//$string .=$terms;
-		//	$terms = get_the_term_list($query->ID, 'type', 'Type: ', ' : ', '');
-			//$string .=$terms;
-		//	$terms = get_the_term_list($query->ID, 'Host-Org', ' ', '', ' ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'FFRating', 'FFRating: ', ' : ', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'DOW', 'DOW: ', ' : ', ' : ');
-			//$string .=$terms;
-		}
-		//$string .= '</ul>';
-
-	wp_reset_postdata();
-	return $string;
-}
 
 add_shortcode('group-serve-term','group_serve_query_term');
 
@@ -750,13 +680,13 @@ function group_serve_query_term() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'Location: ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', 'Type: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'project-type', 'Compassion Focus: ', ' : ', '');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'Host-Org', ' ', '', ' ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'FFRating', 'FFRating: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'DOW', 'DOW: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', 'Day(s): ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '</li>');
 			$string .=$terms;
@@ -767,387 +697,7 @@ function group_serve_query_term() {
 	return $string;
 }
 
-
-add_shortcode('Occurs','Occurs_query');
-
-function Occurs_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'occurs',
-				'field'            => 'name',
-				'terms'            => 'Love Week',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		echo "0";
-		while( $query->have_posts() ) {
-			print_r(1);
-			$query->the_post();
-			echo "2";
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title();
-			echo "3";
-			$string .= '</a>'. get_the_content() .'</li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Morris','Morris_query');
-
-function Morris_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'location',
-				'field'            => 'name',
-				'terms'            => 'Morris',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Mon','DOW_Mon_query');
-
-function DOW_Mon_query() {
-    $args = array(
-        'post_type' => 'lqd-group-serve',
-        'post_status'     => 'publish',
-        'posts_per_page'  => '20',
-        'order'           => 'ASC',
-        'tax_query' => array(
-		        array(
-			        'taxonomy'         => 'DOW',
-			        'field'            => 'name',
-			       // 'terms'            => 'Mon','Tue','Wed', 'Thu','Fri','Sat','Sun',
-			        'terms'             => 'Mon',
-			        'operator'         => 'IN',
-		        ),
-	        ),
-    );
-
-    $string = '';
-    $query = new WP_Query( $args );
-    if( $query->have_posts() ) {
-        $string .= '<ul>';
-        while( $query->have_posts() ) {
-            $query->the_post();
-            $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-	        $terms = get_the_term_list($query->ID, 'DOW', 'DOW: ', ' : ', ' : ');
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'project-location', 'Location: ', ' : ', ' : ');
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'project-type', 'Type: ', ' : ', '');
-	        $string .=$terms;
-	        $terms = get_the_term_list($query->ID, 'FFRating', 'FFRating: ', ' : ', ' : ');
-	        $string .=$terms;
-        }
-        $string .= '</ul>';
-    }
-    wp_reset_postdata();
-    return $string;
-}
-
-add_shortcode('Sun','DOW_Sun_query');
-
-function DOW_Sun_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'Sun',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-			$terms = get_the_term_list($query->ID, 'DOW', 'DOW: ', ' : ', ' : ');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'Location: ', ' : ', ' : ');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', 'Type: ', ' : ', '');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'FFRating', 'FFRating: ', ' : ', ' : ');
-			$string .=$terms;
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Tue','DOW_Tue_query');
-
-function DOW_Tue_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'Tue',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Wed','DOW_Wed_query');
-
-function DOW_Wed_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'Wed',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Thu','DOW_Thu_query');
-
-function DOW_Thu_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'Thu',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('Fri','DOW_Fri_query');
-
-function DOW_Fri_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'MonFriIN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-
-add_shortcode('Sat','DOW_Sat_query');
-
-function DOW_Sat_query() {
-	$args = array(
-		'post_type' => 'lqd-group-serve',
-		'post_status'     => 'publish',
-		'posts_per_page'  => '20',
-		'order'           => 'ASC',
-		'tax_query' => array(
-			array(
-				'taxonomy'         => 'DOW',
-				'field'            => 'name',
-				'terms'            => 'Sat',
-				'operator'         => 'IN',
-			),
-		),
-	);
-
-	$string = '';
-	$query = new WP_Query( $args );
-	if( $query->have_posts() ) {
-		$string .= '<ul>';
-		while( $query->have_posts() ) {
-			$query->the_post();
-			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-		}
-		$string .= '</ul>';
-	}
-	wp_reset_postdata();
-	return $string;
-}
-
-add_shortcode('location','location_query');
-
-function location_query() {
-    $args = array(
-        'post_type' => 'lqd-group-serve',
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'group-serve',
-                'field' => 'term_id',
-                'terms' => 262,  // TODO: Make generic
-            ),
-        ),
-    );
-
-    $string = '';
-    $query = new WP_Query( $args );
-    if( $query->have_posts() ) {
-        $string .= '<ul>';
-        while( $query->have_posts() ) {
-            $query->the_post();
-            $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></li>';
-        }
-        $string .= '</ul>';
-    }
-    wp_reset_postdata();
-    return $string;
-}
+// Register lqd-group-serve-cpt
 
 register_activation_hook( __FILE__, array( &$LQD_Group_Serve_CPT, 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( &$LQD_Group_Serve_CPT, 'plugin_deactivation' ) );
-
-
-//* add_shortcode('days-of-week', 'get_days_of_week');
-
-//function get_days_of_week() {
-//	$terms = get_terms( array(
-//		'taxonomy' => 'DOW',
-//		'hide_empty' => 'false',
-//	));
-
-//	$res_html  = '';
-
-//	foreach ( $terms as $term ) {
-
-//add_shortcode( 'wp', 'list_terms_custom_taxonomy' );
-
-//function list_terms_custom_taxonomy( $atts) {
-//	extract( shortcode_atts( array(
-//		'custom_taxonomy' => '',
-//	), $atts ) );
-
-//	ob_start();
-//	global $post;
-//	$custom_taxonomy = 'occurs'
-//	$string = '<ul class="tax">';
-//	$string .= get_the_term_list( $post->ID , $custom_taxonomy, '<li>', '</li><li>', '</li>' );
-//	$string .= ob_get_clean();
-//	$string .= '</ul>';
-//	return $string;
-
-// $res_html .= json_encode($term);
-//		$res_html .= 'Test :  <input type="checkbox" name="'. $term->name .'" / >'. $term->name .'<br />';
-//	}
-
-//	return $res_html;
-
-//	}
-
-//}

@@ -38,9 +38,21 @@
             $string = '';
             $terms = '';
 		while (have_posts() ) : the_post();{
-        $terms = get_the_term_list($id, 'Host-URL','  : Host site link : ', '', ' : ');
-		$string .=$terms;
-		$terms = get_the_term_list($id, 'project-type', '   Type: ', ' : ', ' ');
+			$string = '';
+			$terms = '';
+			$terms = '<p style= "min-height:50px; max-width: 65%;"><a class="blue_btn" style="width: 35%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			$string .= $terms;
+			$terms = get_field('host_url');
+			$string .=  $terms . '" target="_blank"> Host URL</a>';
+       // $terms = get_the_term_list($id, 'Host-URL','  : Host site link : ', '', ' : ');
+		//$string .=$terms;
+		$terms = get_the_term_list($id, 'project-type', ' Compassion Focus: ', ' : ', ' ');
 		$string .=$terms;
 		$terms = get_the_content() . '';
 		$string .=$terms;
@@ -48,11 +60,13 @@
 		$string .=$terms;
 		$terms = get_the_term_list($id, 'project-location', 'Location: ', ' : ', ' : ');
 		$string .=$terms;
-		$terms = get_the_term_list($id, 'FFRating', 'FFRating: ', ' : ', ' : ');
-		$string .=$terms;
-		$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', ' : ');
-		$string .=$terms;
-		$terms = get_the_term_list($id, 'Host-Org', '<br/>    Host Organisation: ', '', '');
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+		$string .=$terms . '<br/>';
+		$terms = get_the_term_list($id, 'Host-Org', '   Host Organisation: ', '', '');
 		$string .=$terms;
 		$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 		$string .=$terms;
