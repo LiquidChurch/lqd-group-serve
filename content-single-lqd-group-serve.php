@@ -39,12 +39,12 @@
             $terms = '';
 		while (have_posts() ) : the_post();{
 			/* comment out this section to remove sign up button */$string = '';
-			//$terms = '';
-			//$terms = '<p style= "min-height:50px; max-width: 65%;"><a class="blue_btn" style="width: 35%;float: left;" href=';
-			//$string .= $terms;
-			//$terms = get_field('sign_up_to_serve');
-			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			//$terms = '';
+			$terms = '';
+			$terms = '<p style= "min-height:50px; max-width: 65%;"><a class="blue_btn" style="width: 35%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
 
 			/* comment out this section to remove URL button */
 			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';

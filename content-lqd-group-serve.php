@@ -41,11 +41,11 @@
             $terms = '';
 
             /* comment out this ection to remove sign up button */
-            //$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-            //$string .= $terms;
-            //$terms = get_field('sign_up_to_serve');
-		    //$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-		//$terms = '';
+            $terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+            $string .= $terms;
+            $terms = get_field('sign_up_to_serve');
+		    $string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+		$terms = '';
 
         /* comment out this sec tion to remove url button */
 		//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
