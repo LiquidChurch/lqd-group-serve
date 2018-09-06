@@ -39,7 +39,7 @@
         <?php
             $string = '';
             $terms = '';
-
+            
             /* comment out this ection to remove sign up button */
             //$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
             //$string .= $terms;
