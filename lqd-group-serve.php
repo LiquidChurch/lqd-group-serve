@@ -16,17 +16,19 @@ class LQD_Group_Serve_CPT {
      * Constructor: Called when plugin is initialized.
      * TODO: Flush permalinks on activation.
      */
+
+    /* comment out taxonomaies no longer required */
 	function __construct() {
 		add_action( 'init', array( $this, 'lqd_group_serve_cpt' ) );
         add_action( 'init', 'lqd_register_taxonomy_project_type' );
 		add_action( 'init', 'lqd_register_taxonomy_project_location' );
 		add_action( 'init', 'lqd_register_taxonomy_project_dow' );
 		add_action( 'init', 'lqd_register_taxonomy_project_dates' );
-		add_action( 'init', 'lqd_register_taxonomy_project_FFRating' );
-        add_action( 'init', 'lqd_register_taxonomy_project_host_url' );
+		//add_action( 'init', 'lqd_register_taxonomy_project_FFRating' );
+        //add_action( 'init', 'lqd_register_taxonomy_project_host_url' );
 		add_action( 'init', 'lqd_register_taxonomy_project_host_organisation' );
 		add_action( 'init', 'lqd_register_taxonomy_project_occurs' );
-		add_action( 'init', 'lqd_register_taxonomy_project_team_size');
+		//add_action( 'init', 'lqd_register_taxonomy_project_team_size');
 		//add_action( 'init', 'lqd_register_taxonomy_project_signup');
 	}
 
@@ -690,6 +692,989 @@ function group_serve_query_term() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '</li>');
 			$string .=$terms;
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+add_shortcode('groupserveallyrESS','group_serve_query_allyrESS');
+
+function group_serve_query_allyrESS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+				),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Essex',
+			)
+							)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+	/* comment out this ection to remove sign up button */
+	//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+	//$string .= $terms;
+	//$terms = get_field('sign_up_to_serve');
+	//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+	//$terms = '';
+
+	/* comment out this sec tion to remove url button */
+	//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+	//$string .= $terms;
+	//$terms = get_field('host_url');
+	//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+	/*while (have_posts() ) : the_post();{*/
+	$id =$query;
+	$string .= '</p> ';
+	$terms = get_the_content() . '';
+	$string .=$terms .'<p>';
+	$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+	$string .=$terms;
+	$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+	$string .=$terms;
+	//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+	$terms = get_field('family_friendly_rating');
+	$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+	//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+	$terms = get_field('number_of_participants');
+	$string .= 'Team size: ' . $terms .'<br/>';
+	$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+	$string .=$terms;
+	//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+	//$string .=$terms;
+	$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+	$string .=$terms;
+	$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+	$string .=$terms;
+	/*}*/
+
+
+	/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserveallyrsignESS','group_serve_query_allyrsignESS');
+
+function group_serve_query_allyrsignESS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Essex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Middlesex
+add_shortcode('groupserveallyrMID','group_serve_query_allyrMID');
+
+function group_serve_query_allyrMID() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Middlesex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$string .= $terms;
+			//$terms = get_field('sign_up_to_serve');
+			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			//$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserveallyrsignMID','group_serve_query_allyrsignMID');
+
+function group_serve_query_allyrsignMID() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Middlesex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Morris
+add_shortcode('groupserveallyrMOR','group_serve_query_allyrMOR');
+
+function group_serve_query_allyrMOR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Morris',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$string .= $terms;
+			//$terms = get_field('sign_up_to_serve');
+			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			//$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserveallyrsignMOR','group_serve_query_allyrsignMOR');
+
+function group_serve_query_allyrsignMOR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Morris',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Somerset
+add_shortcode('groupserveallyrSOM','group_serve_query_allyrSOM');
+
+function group_serve_query_allyrSOM() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+				),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Somerset',
+			)
+							)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+/* comment out this ection to remove sign up button */
+//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+//$string .= $terms;
+//$terms = get_field('sign_up_to_serve');
+//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+//$terms = '';
+
+/* comment out this sec tion to remove url button */
+//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+//$string .= $terms;
+//$terms = get_field('host_url');
+//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+/*while (have_posts() ) : the_post();{*/
+$id =$query;
+$string .= '</p> ';
+$terms = get_the_content() . '';
+$string .=$terms .'<p>';
+$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+$string .=$terms;
+$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+$string .=$terms;
+//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+$terms = get_field('family_friendly_rating');
+$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+$terms = get_field('number_of_participants');
+$string .= 'Team size: ' . $terms .'<br/>';
+$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+$string .=$terms;
+//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+//$string .=$terms;
+$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+$string .=$terms;
+$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+$string .=$terms;
+/*}*/
+
+
+/*endwhile; */
+}
+$string .= '</ul>';
+}
+wp_reset_postdata();
+return $string;
+}
+
+
+add_shortcode('groupserveallyrsignSOM','group_serve_query_allyrsignSOM');
+
+function group_serve_query_allyrsignSOM() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Somerset',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Garwood
+add_shortcode('groupserveallyrGAR','group_serve_query_allyrGAR');
+
+function group_serve_query_allyr() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Garwood',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$string .= $terms;
+			//$terms = get_field('sign_up_to_serve');
+			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			//$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserveallyrsignGAR','group_serve_query_allyrsignGAR');
+
+function group_serve_query_allyrsignGAR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Garwood',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Mountainside
+add_shortcode('groupserveallyrMTS','group_serve_query_allyrMTS');
+
+function group_serve_query_allyrMTS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Mountainside',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$string .= $terms;
+			//$terms = get_field('sign_up_to_serve');
+			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			//$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserveallyrsignMTS','group_serve_query_allyrsignMTS');
+
+function group_serve_query_allyrsignMTS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'Year Round',
+			),
+			array(
+				'taxonomy' => 'project-location',
+				'field' => 'slug',
+				'terms' => 'Mountainside',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family_friendly_rating');
+			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
+			$terms = get_field('number_of_participants');
+			$string .= 'Team size: ' . $terms .'<br/>';
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
 		}
 		$string .= '</ul>';
 	}
