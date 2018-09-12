@@ -20,16 +20,17 @@ class LQD_Group_Serve_CPT {
     /* comment out taxonomaies no longer required */
 	function __construct() {
 		add_action( 'init', array( $this, 'lqd_group_serve_cpt' ) );
-        add_action( 'init', 'lqd_register_taxonomy_project_type' );
 		add_action( 'init', 'lqd_register_taxonomy_project_location' );
 		add_action( 'init', 'lqd_register_taxonomy_project_dow' );
-		add_action( 'init', 'lqd_register_taxonomy_project_dates' );
-		//add_action( 'init', 'lqd_register_taxonomy_project_FFRating' );
-        //add_action( 'init', 'lqd_register_taxonomy_project_host_url' );
-		add_action( 'init', 'lqd_register_taxonomy_project_host_organisation' );
+		add_action( 'init', 'lqd_register_taxonomy_project_family_friendly' );
+		add_action( 'init', 'lqd_register_taxonomy_project_SN_friendly');
 		add_action( 'init', 'lqd_register_taxonomy_project_occurs' );
-		//add_action( 'init', 'lqd_register_taxonomy_project_team_size');
-		//add_action( 'init', 'lqd_register_taxonomy_project_signup');
+        add_action( 'init', 'lqd_register_taxonomy_project_type' );
+		add_action( 'init', 'lqd_register_taxonomy_project_dates' );
+        add_action( 'init', 'lqd_register_taxonomy_project_host_url' );
+		add_action( 'init', 'lqd_register_taxonomy_project_host_organization' );
+		add_action( 'init', 'lqd_register_taxonomy_project_team_size');
+
 	}
 
 	/**
@@ -72,21 +73,21 @@ class LQD_Group_Serve_CPT {
             'edit_project_dates'            => true,
             'delete_project_dates'          => true,
             'assign_project_dates'          => true,
-	        // Permissions for Project FFRating Taxonomy
-            'manage_project_FFRatings'          => true,
-            'edit_project_FFRatings'            => true,
-            'delete_project_FFRatings'          => true,
-            'assign_project_FFRatings'          => true,
+	        // Permissions for Project family-friendly Taxonomy
+            'manage_project_family_friendly'          => true,
+            'edit_project_family_friendly'            => true,
+            'delete_project_family_friendly'          => true,
+            'assign_project_family_friendly'          => true,
 	        // Permissions for Project Host URL Taxonomy
             'manage_project_host_url'          => true,
             'edit_project_host_url'            => true,
             'delete_project_host_url'          => true,
             'assign_project_host_url'          => true,
-	        // Permissions for Project Host Organisation Taxonomy
-            'manage_project_host_organisation'          => true,
-            'edit_project_host_organisation'            => true,
-            'delete_project_host_organisation'          => true,
-            'assign_project_host_organisation'          => true,
+	        // Permissions for Project Host Organization Taxonomy
+            'manage_project_host_organization'          => true,
+            'edit_project_host_organization'            => true,
+            'delete_project_host_organization'          => true,
+            'assign_project_host_organization'          => true,
             // Permissions for Project occurs Taxonomy
             'manage_project_occurences'     => true,
             'edit_project_occurences'       => true,
@@ -96,12 +97,12 @@ class LQD_Group_Serve_CPT {
             'manage_project_team_sizes'     => true,
             'edit_project_team_sizes'       => true,
             'delete_project_team_sizes'     => true,
-            'assign_project_team_sizes'     => true
-	        /* Permissions for signup Taxonomy
-            'manage_project_signup'         => true,
-            'edit_project_signup'           => true,
-            'delete_project_signup'         => true,
-            'assign_project_signup'          => true*/
+            'assign_project_team_sizes'     => true,
+	        // Permissions for SN Friendly Taxonomy
+            'manage_project_SN_friendly'         => true,
+            'edit_project_SN_friendly'           => true,
+            'delete_project_SN_friendly'         => true,
+            'assign_project_SN_friendly'         => true,
     );
 
     // Create our Group Serve role and assign the custom capabilities to it
@@ -231,17 +232,17 @@ function lqd_register_taxonomy_project_type() {
 function lqd_register_taxonomy_project_dow() {
 	// Define labels for taxonomy Project Day of Week - Sun, Mon, Tue, Wed, Thur, Fri ,Sat, Sat-Sun
 	$labels = array(
-		'name'              => _x( 'DOW', 'taxonomy general name' ),
-		'singular_name'     => _x( 'DOW', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search DOW' ),
-		'all_items'         => __( 'All DOW' ),
+		'name'              => _x( 'Days', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Day', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Days' ),
+		'all_items'         => __( 'All Days' ),
 		'parent_item'       => null,
 		'parent_item_colon' => null,
-		'edit_item'         => __( 'Edit DOW' ),
-		'update_item'       => __( 'Update DOW' ),
-		'add_new_item'      => __( 'Add New DOW' ),
-		'new_item_name'     => __( 'New DOW name' ),
-		'menu_name'         => __( 'DOW' ),
+		'edit_item'         => __( 'Edit Day' ),
+		'update_item'       => __( 'Update Day' ),
+		'add_new_item'      => __( 'Add New Day' ),
+		'new_item_name'     => __( 'New Day name' ),
+		'menu_name'         => __( 'Day of Week' ),
 	);
 	// Define capabilities of taxonomy
 	$capabilities = array(
@@ -252,7 +253,7 @@ function lqd_register_taxonomy_project_dow() {
 	);
 	// Define taxonomy
 	$args = array(
-		'hierarchical'            => false,
+		'hierarchical'            => true,
 		'labels'                  => $labels,
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
@@ -295,13 +296,13 @@ function lqd_register_taxonomy_project_location() {
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
 		'query_var'               => true,
-		'rewrite'                 => array( 'slug' => 'project-location' ),
+		'rewrite'                 => array( 'slug' => 'project_location' ),
 		'capabilities'            => $capabilities,
 		'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'project-location', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'project_location', array( 'lqd-group-serve' ), $args );
 }
 
 
@@ -342,45 +343,45 @@ function lqd_register_taxonomy_project_dates() {
 	register_taxonomy( 'date', array( 'lqd-group-serve' ), $args );
 }
 
-function lqd_register_taxonomy_Project_FFRating() {
-	// Define labels for taxonomy FFRating (lower age limt if any)
+function lqd_register_taxonomy_project_family_friendly() {
+	// Define labels for taxonomy family-friendly (lower age limt if any)
 	$labels = array(
-		'name'              => _x( 'FFRating', 'taxonomy general name' ),
-		'singular_name'     => _x( 'FFRating', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search FFRatings' ),
-		'all_items'         => __( 'All FFRatings' ),
+		'name'              => _x( 'Family friendly', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Family friendly', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search family friendly' ),
+		'all_items'         => __( 'All family friendly' ),
 		'parent_item'       => null,
 		'parent_item_colon' => null,
-		'edit_item'         => __( 'Edit FFRating' ),
-		'update_item'       => __( 'Update FFRating' ),
-		'add_new_item'      => __( 'Add New FFRating' ),
-		'new_item_name'     => __( 'New FFRating Name' ),
-		'menu_name'         => __( 'FFRatings' ),
+		'edit_item'         => __( 'Edit family friendly' ),
+		'update_item'       => __( 'Update family friendly' ),
+		'add_new_item'      => __( 'Add New family friendly' ),
+		'new_item_name'     => __( 'New family friendly Name' ),
+		'menu_name'         => __( 'Family friendly' ),
 	);
 	// Define taxonomy
 	$capabilities = array (
-		'manage_terms'          => 'manage_project_FFRatings',
-		'edit_terms'            => 'edit_project_FFRatings',
-		'delete_terms'          => 'delete_project_FFRatings',
-		'assign_terms'          => 'assign_project_FFRatings'
+		'manage_terms'          => 'manage_project_family_friendly',
+		'edit_terms'            => 'edit_project_family_friendly',
+		'delete_terms'          => 'delete_project_family_friendly',
+		'assign_terms'          => 'assign_project_family_friendly'
 	);
 	$args = array(
-		'hierarchical'            => false,
+		'hierarchical'            => true,
 		'labels'                  => $labels,
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
 		'query_var'               => true,
-		'rewrite'                 => array( 'slug' => 'FFRating' ),
+		'rewrite'                 => array( 'slug' => 'family_friendly' ),
 		'capabilities'            => $capabilities,
 		'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'FFRating', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'family_friendly', array( 'lqd-group-serve' ), $args );
 }
 
-function lqd_register_taxonomy_project_host_organisation() {
-	// Define labels for taxonomy Host Organisation name
+function lqd_register_taxonomy_project_host_organization() {
+	// Define labels for taxonomy Host Organization name
 	$labels = array(
 		'name'              => _x( 'Host Org.', 'taxonomy general name' ),
 		'singular_name'     => _x( 'Host Org', 'taxonomy singular name' ),
@@ -396,10 +397,10 @@ function lqd_register_taxonomy_project_host_organisation() {
 	);
 	// Define taxonomy
 	$capabilities = array (
-		'manage_terms'          => 'manage_project_host_organisation',
-		'edit_terms'            => 'edit_project_host_organisation',
-		'delete_terms'          => 'delete_project_host_organisation',
-		'assign_terms'          => 'assign_project_host_organisation'
+		'manage_terms'          => 'manage_project_host_organization',
+		'edit_terms'            => 'edit_project_host_organization',
+		'delete_terms'          => 'delete_project_host_organization',
+		'assign_terms'          => 'assign_project_host_organization'
 	);
 	$args = array(
 		'hierarchical'            => false,
@@ -479,7 +480,7 @@ function lqd_register_taxonomy_project_occurs() {
 	);
 
 	$args = array(
-		'hierarchical'            => false,
+		'hierarchical'            => true,
 		'labels'                  => $labels,
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
@@ -531,42 +532,42 @@ function lqd_register_taxonomy_project_team_size() {
 	register_taxonomy( 'team-size', array( 'lqd-group-serve' ), $args );
 }
 
-function lqd_register_taxonomy_project_signup() {
-	// Define labels for taxonomy Project Occurs: Year round, Love Week, Christmas Outreach, One Off
+function lqd_register_taxonomy_project_SN_friendly() {
+	// Define labels for taxonomy Project Special Needs Friendly: Yes or No
 	$labels = array(
-		'name'              => _x( 'Signup', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Signup', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search signup' ),
-		'all_items'         => __( 'All signups' ),
+		'name'              => _x( 'Special Needs friendly', 'taxonomy general name' ),
+		'singular_name'     => _x( 'SN friendly', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search SN friendly' ),
+		'all_items'         => __( 'All SN friendly' ),
 		'parent_item'       => null,
 		'parent_item_colon' => null,
-		'edit_item'         => __( 'Edit signup' ),
-		'update_item'       => __( 'Update signup' ),
-		'add_new_item'      => __( 'Add signup' ),
-		'new_item_name'     => __( 'New signup Name' ),
-		'menu_name'         => __( 'Signup' ),
+		'edit_item'         => __( 'Edit SN friendly' ),
+		'update_item'       => __( 'Update SN friendly' ),
+		'add_new_item'      => __( 'Add SN friendly' ),
+		'new_item_name'     => __( 'New SN friendly Name' ),
+		'menu_name'         => __( 'Special Needs friendly' ),
 	);
 	// Define taxonomy
 	$capabilities = array (
-		'manage_terms'          => 'manage_project_signup',
-		'edit_terms'            => 'edit_project_signup',
-		'delete_terms'          => 'delete_project_signup',
-		'assign_terms'          => 'assign_project_signup'
+		'manage_terms'          => 'manage_project_SN_friendly',
+		'edit_terms'            => 'edit_project_SN_friendly',
+		'delete_terms'          => 'delete_project_SN_friendly',
+		'assign_terms'          => 'assign_project_SN_friendly',
 	);
 
 	$args = array(
-		'hierarchical'            => false,
+		'hierarchical'            => true,
 		'labels'                  => $labels,
-		'show_ui'                 => false,
+		'show_ui'                 => true,
 		'show_admin_column'       => true,
-		'query_var'               => false,
-		'rewrite'                 => array( 'slug' => 'signup' ),
+		'query_var'               => true,
+		'rewrite'                 => array( 'slug' => 'SN_friendly' ),
 		'capabilities'            => $capabilities,
-		'map_meta_cap'            => 'true'
+		'map_meta_cap'            => 'true',
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'signup', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'SN_friendly', array( 'lqd-group-serve' ), $args );
 }
 
 
@@ -640,11 +641,11 @@ function group_serve_query_line() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'Location: ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'Host-Org', '<br/>    Host Organisation: ', '', '');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '<br/>    Host Organization: ', '', '');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'occurs', ' Occurs: ', ' : ', ' : ');
 			$string .=$terms;
@@ -686,7 +687,7 @@ function group_serve_query_term() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'Host-Org', ' ', '', ' ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'DOW', 'Day(s): ', ' : ', ' : ');
 			$string .=$terms;
@@ -698,6 +699,17 @@ function group_serve_query_term() {
 	wp_reset_postdata();
 	return $string;
 }
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+//********************************************************************************************************
+
+
+
 
 add_shortcode('groupserveallyrESS','group_serve_query_allyrESS');
 
@@ -711,15 +723,16 @@ function group_serve_query_allyrESS() {
 			array(
 				'taxonomy' => 'occurs',
 				'field' => 'slug',
-				'terms' => 'Year Round',
+				'terms' => 'year round',
 				),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
-				'terms' => 'Essex',
+				'terms' => 'essex',
 			)
 							)
 	);
+	
 
 	$string = '';
 	$terms = '';
@@ -751,30 +764,39 @@ function group_serve_query_allyrESS() {
 	$string .= '</p> ';
 	$terms = get_the_content() . '';
 	$string .=$terms .'<p>';
-	$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+
+	$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', ' : ', ' : ');
 	$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+	$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', ' : ');
 	$string .=$terms;
-	//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-	$terms = get_field('family_friendly_rating');
-	$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-	//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-	$terms = get_field('number_of_participants');
-	$string .= 'Team size: ' . $terms .'<br/>';
-	$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+	$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', ' : ', ' : ');
 	$string .=$terms;
+	$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', ' : ', ' </p> ');
+	$string .=$terms;
+
+	//$terms = get_field('family-friendly_rating');
+	//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+
+	/*$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');*/
+
+
+	//$terms = get_field('number_of_participants');
+			////$string .=$terms;
+			//$string .= 'Team size: ' . $terms .'<br/>';
+	//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+	//$string .=$terms;
 	//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 	//$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-	$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-	$string .=$terms;
+	//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+	//$string .=$terms;
+	//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+	//$string .=$terms;
 	/*}*/
 
 
 	/*endwhile; */
 		}
-		$string .= '</ul>';
+		$string .= '</li></ul>';
 	}
 	wp_reset_postdata();
 	return $string;
@@ -793,12 +815,12 @@ function group_serve_query_allyrsignESS() {
 			array(
 				'taxonomy' => 'occurs',
 				'field' => 'slug',
-				'terms' => 'Year Round',
+				'terms' => 'year round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
-				'terms' => 'Essex',
+				'terms' => 'essex',
 			)
 		)
 	);
@@ -812,51 +834,27 @@ function group_serve_query_allyrsignESS() {
 		while( $query->have_posts() ) {
 			$query->the_post();
 			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
-			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
-			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
 
-
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', ' : ', ' : ');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', ' : ', ' </p> ');
+			$string .=$terms. ' <center>';
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p> </center> <br/> ';
 			/*endwhile; */
 		}
-		$string .= '</ul>';
+		$string .= '</li></ul>';
 	}
 	wp_reset_postdata();
 	return $string;
@@ -875,12 +873,12 @@ function group_serve_query_allyrMID() {
 			array(
 				'taxonomy' => 'occurs',
 				'field' => 'slug',
-				'terms' => 'Year Round',
+				'terms' => 'year round',
 			),
 			array(
 				'taxonomy' => 'project-location',
 				'field' => 'slug',
-				'terms' => 'Middlesex',
+				'terms' => 'middlesex',
 			)
 		)
 	);
@@ -917,22 +915,22 @@ function group_serve_query_allyrMID() {
 			$string .=$terms .'<p>';
 			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			//$terms = get_field('family-friendly_rating');
+			//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
-			$string .=$terms;
+			//$terms = get_field('number_of_participants');
+			//$string .= 'Team size: ' . $terms .'<br/>';
+			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			//$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			//$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			//$string .=$terms;
 			/*}*/
 
 
@@ -957,12 +955,12 @@ function group_serve_query_allyrsignMID() {
 			array(
 				'taxonomy' => 'occurs',
 				'field' => 'slug',
-				'terms' => 'Year Round',
+				'terms' => 'year round',
 			),
 			array(
 				'taxonomy' => 'project-location',
 				'field' => 'slug',
-				'terms' => 'Middlesex',
+				'terms' => 'middlesex',
 			)
 		)
 	);
@@ -982,7 +980,7 @@ function group_serve_query_allyrsignMID() {
 			/* comment out this ection to remove sign up button */
 			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
 			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
+			$terms = get_post_field('sign_up_to_serve');
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
 			$terms = '';
 
@@ -999,22 +997,22 @@ function group_serve_query_allyrsignMID() {
 			$string .=$terms .'<p>';
 			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			//$terms = get_field('family-friendly_rating');
+			//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
-			$string .=$terms;
+			//$terms = get_field('number_of_participants');
+			//$string .= 'Team size: ' . $terms .'<br/>';
+			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			//$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			//$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			//$string .=$terms;
 			/*}*/
 
 
@@ -1083,13 +1081,13 @@ function group_serve_query_allyrMOR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1165,13 +1163,13 @@ function group_serve_query_allyrsignMOR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1247,13 +1245,13 @@ $terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
 $string .=$terms;
 $terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 $string .=$terms;
-//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-$terms = get_field('family_friendly_rating');
+//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+$terms = get_field('family-friendly_rating');
 $string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 //$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 $terms = get_field('number_of_participants');
 $string .= 'Team size: ' . $terms .'<br/>';
-$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 $string .=$terms;
 //$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 //$string .=$terms;
@@ -1329,13 +1327,13 @@ function group_serve_query_allyrsignSOM() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1411,13 +1409,13 @@ function group_serve_query_allyr() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1493,13 +1491,13 @@ function group_serve_query_allyrsignGAR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1575,13 +1573,13 @@ function group_serve_query_allyrMTS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
@@ -1657,13 +1655,13 @@ function group_serve_query_allyrsignMTS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'FFRating', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family_friendly_rating');
+			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_field('family-friendly_rating');
 			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
 			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
 			$terms = get_field('number_of_participants');
 			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organisation: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			$string .=$terms;
 			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
 			//$string .=$terms;
