@@ -742,7 +742,7 @@ function group_serve_query_allyrESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			//Returns All Term Items for "my_taxonomy"
 			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
 			$string .=$terms;*/
@@ -765,13 +765,13 @@ function group_serve_query_allyrESS() {
 	$terms = get_the_content() . '';
 	$string .=$terms .'<p>';
 
-	$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', ' : ', ' : ');
+	$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 	$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', ' : ');
+	$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 	$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', ' : ', ' : ');
+	$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 	$string .=$terms;
-	$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', ' : ', ' </p> ');
+	$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p> ');
 	$string .=$terms;
 
 	//$terms = get_field('family-friendly_rating');
@@ -796,7 +796,7 @@ function group_serve_query_allyrESS() {
 
 	/*endwhile; */
 		}
-		$string .= '</li></ul>';
+		$string .= '</ul>';
 	}
 	wp_reset_postdata();
 	return $string;
@@ -833,25 +833,25 @@ function group_serve_query_allyrsignESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
 
-			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', ' : ', ' </p> ');
-			$string .=$terms. ' <center>';
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
 			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p> </center> <br/> ';
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</li></ul>';
@@ -876,7 +876,7 @@ function group_serve_query_allyrMID() {
 				'terms' => 'year round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'middlesex',
 			)
@@ -885,55 +885,24 @@ function group_serve_query_allyrMID() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-			//$string .= $terms;
-			//$terms = get_field('sign_up_to_serve');
-			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			//$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project_location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			//$terms = get_field('family-friendly_rating');
-			//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			//$terms = get_field('number_of_participants');
-			//$string .= 'Team size: ' . $terms .'<br/>';
-			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			//$string .=$terms;
-			/*}*/
-
-
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -958,7 +927,7 @@ function group_serve_query_allyrsignMID() {
 				'terms' => 'year round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'middlesex',
 			)
@@ -967,55 +936,29 @@ function group_serve_query_allyrsignMID() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_post_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project_location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			//$terms = get_field('family-friendly_rating');
-			//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			//$terms = get_field('number_of_participants');
-			//$string .= 'Team size: ' . $terms .'<br/>';
-			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-			//$string .=$terms;
-			//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			//$string .=$terms;
-			/*}*/
-
-
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1040,7 +983,7 @@ function group_serve_query_allyrMOR() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Morris',
 			)
@@ -1049,55 +992,24 @@ function group_serve_query_allyrMOR() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-			//$string .= $terms;
-			//$terms = get_field('sign_up_to_serve');
-			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			//$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1122,7 +1034,7 @@ function group_serve_query_allyrsignMOR() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Morris',
 			)
@@ -1131,55 +1043,29 @@ function group_serve_query_allyrsignMOR() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1204,7 +1090,7 @@ function group_serve_query_allyrSOM() {
 				'terms' => 'Year Round',
 				),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Somerset',
 			)
@@ -1213,61 +1099,30 @@ function group_serve_query_allyrSOM() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-/* comment out this ection to remove sign up button */
-//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-//$string .= $terms;
-//$terms = get_field('sign_up_to_serve');
-//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-//$terms = '';
-
-/* comment out this sec tion to remove url button */
-//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-//$string .= $terms;
-//$terms = get_field('host_url');
-//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-/*while (have_posts() ) : the_post();{*/
-$id =$query;
-$string .= '</p> ';
-$terms = get_the_content() . '';
-$string .=$terms .'<p>';
-$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
-$string .=$terms;
-$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
-$string .=$terms;
-//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-$terms = get_field('family-friendly_rating');
-$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-$terms = get_field('number_of_participants');
-$string .= 'Team size: ' . $terms .'<br/>';
-$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
-$string .=$terms;
-//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-//$string .=$terms;
-$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
-$string .=$terms;
-$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-$string .=$terms;
-/*}*/
-
-
-/*endwhile; */
-}
-$string .= '</ul>';
-}
-wp_reset_postdata();
-return $string;
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
 }
 
 
@@ -1286,7 +1141,7 @@ function group_serve_query_allyrsignSOM() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Somerset',
 			)
@@ -1295,55 +1150,29 @@ function group_serve_query_allyrsignSOM() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1368,7 +1197,7 @@ function group_serve_query_allyr() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Garwood',
 			)
@@ -1377,55 +1206,24 @@ function group_serve_query_allyr() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-			//$string .= $terms;
-			//$terms = get_field('sign_up_to_serve');
-			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			//$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1450,7 +1248,7 @@ function group_serve_query_allyrsignGAR() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Garwood',
 			)
@@ -1459,55 +1257,29 @@ function group_serve_query_allyrsignGAR() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1532,7 +1304,7 @@ function group_serve_query_allyrMTS() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Mountainside',
 			)
@@ -1542,54 +1314,26 @@ function group_serve_query_allyrMTS() {
 	$string = '';
 	$terms = '';
 
+	$string = '';
+	$terms = '';
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
-			//$string .= $terms;
-			//$terms = get_field('sign_up_to_serve');
-			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			//$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
 			/*endwhile; */
 		}
 		$string .= '</ul>';
@@ -1614,7 +1358,7 @@ function group_serve_query_allyrsignMTS() {
 				'terms' => 'Year Round',
 			),
 			array(
-				'taxonomy' => 'project-location',
+				'taxonomy' => 'project_location',
 				'field' => 'slug',
 				'terms' => 'Mountainside',
 			)
@@ -1623,55 +1367,29 @@ function group_serve_query_allyrsignMTS() {
 
 	$string = '';
 	$terms = '';
-
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<li><h3><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-			//Returns All Term Items for "my_taxonomy"
-			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
-			$string .=$terms;*/
-			/* comment out this ection to remove sign up button */
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
-			$string .= $terms;
-			$terms = get_field('sign_up_to_serve');
-			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
-			$terms = '';
-
-			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
-			//$string .= $terms;
-			//$terms = get_field('host_url');
-			//$string .=  $terms . '" target="_blank"> Host URL</a>';
-
-			/*while (have_posts() ) : the_post();{*/
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
 			$string .=$terms .'<p>';
-			$terms = get_the_term_list($query->ID, 'DOW', '   Day(s): ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-location', 'County/Campus: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'family-friendly', 'Family Friendly: ', ' : ', ' : ');
-			$terms = get_field('family-friendly_rating');
-			$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
-			//$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');
-			$terms = get_field('number_of_participants');
-			$string .= 'Team size: ' . $terms .'<br/>';
-			$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
 			$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
-			//$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
-			$string .=$terms;
-			/*}*/
-
-
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
 		$string .= '</ul>';
