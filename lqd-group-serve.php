@@ -1398,6 +1398,705 @@ function group_serve_query_allyrsignMTS() {
 	return $string;
 }
 
+
+//******************************************************************************
+
+//********************* LOVE WEEKEND SHORTCODES ********************************
+
+//******************************************************************************
+
+add_shortcode('groupserve_lweESS','group_serve_query_lweESS');
+
+function group_serve_query_lweESS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'essex',
+			)
+		)
+	);
+
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			//Returns All Term Items for "my_taxonomy"
+			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
+			$string .=$terms;*/
+			/* comment out this ection to remove sign up button */
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$string .= $terms;
+			//$terms = get_field('sign_up_to_serve');
+			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
+			//$terms = '';
+
+			/* comment out this sec tion to remove url button */
+			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$string .= $terms;
+			//$terms = get_field('host_url');
+			//$string .=  $terms . '" target="_blank"> Host URL</a>';
+
+			/*while (have_posts() ) : the_post();{*/
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p> ');
+			$string .=$terms;
+
+			//$terms = get_field('family-friendly_rating');
+			//$string .= 'Family Friendly (min. age): ' . $terms . ' : ';
+
+			/*$terms = get_the_term_list($id, 'team-size', 'Team size: ', ' : ', '  ');*/
+
+
+			//$terms = get_field('number_of_participants');
+			////$string .=$terms;
+			//$string .= 'Team size: ' . $terms .'<br/>';
+			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
+			//$string .=$terms;
+			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
+			//$string .=$terms;
+			//$terms = get_the_term_list($query->ID, 'project-type', '   Compassion Focus: ', ' : ', ' ');
+			//$string .=$terms;
+			/*}*/
+
+
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignESS','group_serve_query_lwesignESS');
+
+function group_serve_query_lwesignESS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'essex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</li></ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Middlesex
+add_shortcode('groupserve_lweMID','group_serve_query_lweMID');
+
+function group_serve_query_lweMID() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'middlesex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignMID','group_serve_query_lwesignMID');
+
+function group_serve_query_lwesignMID() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'middlesex',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Morris
+add_shortcode('groupserve_lweMOR','group_serve_query_lweMOR');
+
+function group_serve_query_lweMOR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Morris',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignMOR','group_serve_query_lwesignMOR');
+
+function group_serve_query_lwesignMOR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Morris',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Somerset
+add_shortcode('groupserve_lweSOM','group_serve_query_lweSOM');
+
+function group_serve_query_lweSOM() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Somerset',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignSOM','group_serve_query_lwesignSOM');
+
+function group_serve_query_lwesignSOM() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Somerset',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Garwood
+add_shortcode('groupserve_lweGAR','group_serve_query_lweGAR');
+
+function group_serve_query_lweGAR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Garwood',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignGAR','group_serve_query_lwesignGAR');
+
+function group_serve_query_lwesignGAR() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Garwood',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+//Mountainside
+add_shortcode('groupserve_lweMTS','group_serve_query_lweMTS');
+
+function group_serve_query_lweMTS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Mountainside',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> <p>&nbsp;</p>');
+			$string .=$terms;
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+add_shortcode('groupserve_lwesignMTS','group_serve_query_lwesignMTS');
+
+function group_serve_query_lwesignMTS() {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => 'love-weekend',
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => 'Mountainside',
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+
+
+
+
+
+
 // Register lqd-group-serve-cpt
 
 register_activation_hook( __FILE__, array( &$LQD_Group_Serve_CPT, 'plugin_activation' ) );
