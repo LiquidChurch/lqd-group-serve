@@ -49,7 +49,7 @@
 			$string .=$terms;
 			$terms = get_the_term_list($id, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px;"><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;

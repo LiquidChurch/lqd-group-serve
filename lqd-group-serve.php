@@ -742,19 +742,19 @@ function group_serve_query_allyrESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			//Returns All Term Items for "my_taxonomy"
 			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
 			$string .=$terms;*/
 	/* comment out this ection to remove sign up button */
-	//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+	//$terms = '<p style= "min-height:50px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 	//$string .= $terms;
 	//$terms = get_field('sign_up_to_serve');
 	//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
 	//$terms = '';
 
 	/* comment out this sec tion to remove url button */
-	//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+	//$terms = '   <a class="blue_btn" style="width:200px;float: right; " href="';
 	//$string .= $terms;
 	//$terms = get_field('host_url');
 	//$string .=  $terms . '" target="_blank"> Host URL</a>';
@@ -833,7 +833,7 @@ function group_serve_query_allyrsignESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -847,7 +847,7 @@ function group_serve_query_allyrsignESS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -890,7 +890,7 @@ function group_serve_query_allyrMID() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -941,7 +941,7 @@ function group_serve_query_allyrsignMID() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -954,7 +954,7 @@ function group_serve_query_allyrsignMID() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -997,7 +997,7 @@ function group_serve_query_allyrMOR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1048,7 +1048,7 @@ function group_serve_query_allyrsignMOR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1061,7 +1061,7 @@ function group_serve_query_allyrsignMOR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px;"><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1104,7 +1104,7 @@ function group_serve_query_allyrSOM() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1155,7 +1155,7 @@ function group_serve_query_allyrsignSOM() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1168,7 +1168,7 @@ function group_serve_query_allyrsignSOM() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1211,7 +1211,7 @@ function group_serve_query_allyr() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1262,7 +1262,7 @@ function group_serve_query_allyrsignGAR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1275,7 +1275,7 @@ function group_serve_query_allyrsignGAR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1321,7 +1321,7 @@ function group_serve_query_allyrMTS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1372,7 +1372,7 @@ function group_serve_query_allyrsignMTS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1385,7 +1385,7 @@ function group_serve_query_allyrsignMTS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1436,19 +1436,19 @@ function group_serve_query_lweESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			//Returns All Term Items for "my_taxonomy"
 			/*$terms = get_the_term_list($query->ID, 'Host-URL','  : Host site link : ', '', ' : ');
 			$string .=$terms;*/
 			/* comment out this ection to remove sign up button */
-			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width: 40%;float: left;" href=';
+			//$terms = '<p style= "min-height:50px; max-width: 55%;"><a class="blue_btn" style="width:200px;float: left;" href=';
 			//$string .= $terms;
 			//$terms = get_field('sign_up_to_serve');
 			//$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a>  ';
 			//$terms = '';
 
 			/* comment out this sec tion to remove url button */
-			//$terms = '   <a class="blue_btn" style="width: 30%;float: right; " href="';
+			//$terms = '   <a class="blue_btn" style="width:200px;float: right; " href="';
 			//$string .= $terms;
 			//$terms = get_field('host_url');
 			//$string .=  $terms . '" target="_blank"> Host URL</a>';
@@ -1527,7 +1527,7 @@ function group_serve_query_lwesignESS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1540,7 +1540,7 @@ function group_serve_query_lwesignESS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1583,7 +1583,7 @@ function group_serve_query_lweMID() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1634,7 +1634,7 @@ function group_serve_query_lwesignMID() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1647,7 +1647,7 @@ function group_serve_query_lwesignMID() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1690,7 +1690,7 @@ function group_serve_query_lweMOR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1741,7 +1741,7 @@ function group_serve_query_lwesignMOR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1754,7 +1754,7 @@ function group_serve_query_lwesignMOR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1797,7 +1797,7 @@ function group_serve_query_lweSOM() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1848,7 +1848,7 @@ function group_serve_query_lwesignSOM() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1861,7 +1861,7 @@ function group_serve_query_lwesignSOM() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -1904,7 +1904,7 @@ function group_serve_query_lweGAR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1955,7 +1955,7 @@ function group_serve_query_lwesignGAR() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -1968,7 +1968,7 @@ function group_serve_query_lwesignGAR() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
@@ -2014,7 +2014,7 @@ function group_serve_query_lweMTS() {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -2034,7 +2034,6 @@ function group_serve_query_lweMTS() {
 	wp_reset_postdata();
 	return $string;
 }
-
 
 add_shortcode('groupserve_lwesignMTS','group_serve_query_lwesignMTS');
 
@@ -2060,12 +2059,15 @@ function group_serve_query_lwesignMTS() {
 
 	$string = '';
 	$terms = '';
+
+	$string = '';
+	$terms = '';
 	$query = new WP_Query( $args );
 	if( $query->have_posts() ) {
 		$string .= '<ul>';
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$string .= '<h3>&nbsp;&nbsp;&nbsp;&nbsp;<a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
 			$id =$query;
 			$string .= '</p> ';
 			$terms = get_the_content() . '';
@@ -2078,7 +2080,62 @@ function group_serve_query_lwesignMTS() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
 			$string .=$terms;
-			$terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width: 30%;float: left;" href=';
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
+			$string .= $terms;
+			$terms = get_field('sign_up_to_serve');
+			$string .= $terms;
+			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
+			/*endwhile; */
+		}
+		$string .= '</ul>';
+	}
+	wp_reset_postdata();
+	return $string;
+}
+
+add_shortcode('groupserve_lwesignMTS_PARAM','group_serve_query_lwesignMTS_PARAM()');
+
+function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
+	$args = array(
+		'post_type'       => 'lqd-group-serve',
+		'post_status'     => 'publish',
+		'posts_per_page'  => '20',
+		'order'           => 'ASC',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'occurs',
+				'field' => 'slug',
+				'terms' => $OCCURS,
+			),
+			array(
+				'taxonomy' => 'project_location',
+				'field' => 'slug',
+				'terms' => $CAMPUS,
+			)
+		)
+	);
+
+	$string = '';
+	$terms = '';
+	$query = new WP_Query( $args );
+	if( $query->have_posts() ) {
+		$string .= '<ul>';
+		while( $query->have_posts() ) {
+			$query->the_post();
+			$string .= '<header class="entry-header"><h3 class="page-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3></header>';
+			$id =$query;
+			$string .= '</p> ';
+			$terms = get_the_content() . '';
+			$string .=$terms .'<p>';
+			$terms = get_the_term_list($query->ID, 'project_location', 'Campus: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'DOW', '   Days: ', ', ', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'family_friendly', 'Family Friendly: ', '', '   &nbsp;&nbsp;&nbsp;');
+			$string .=$terms;
+			$terms = get_the_term_list($query->ID, 'SN_friendly', 'Special Needs Friendly: ', '', ' </p> ');
+			$string .=$terms;
+			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
 			$string .= $terms;
