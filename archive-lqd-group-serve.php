@@ -27,7 +27,6 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-                <p>[rev_slider alias="loveweekend-header195"]</p>
 				<?php
 				/*the_archive_title( '<h1 class="page-title">', '</h1>' );*/
 

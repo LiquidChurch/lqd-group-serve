@@ -11,8 +11,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-        <p>[rev_slider alias="loveweekend-header195"]</p>
-		<?php
+        <?php
 		/*if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 			<span class="sticky-post"><?php _e( 'Featured', 'liquidchurch' ); ?></span>*/ ?>
 		<?php // endif; ?>

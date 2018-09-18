@@ -11,19 +11,18 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
+            <div><p> &nbsp; </p>
+			<?php  echo do_shortcode( '[rev_slider alias="loveweekend-header195"]' ); ?>
+			<?php echo do_shortcode( '[searchandfilter slug="group-server-search"]' ); ?><p> &nbsp; </p>
+            </div>
 		<?php if ( have_posts() ) : ?>
 			<!-- .entry-content -->
 				<div class="entry-content">
 
-			<header class="page-header"> [rev_slider alias="loveweekend-header195"]
-				<?php
-				$string ='';
-				$string .='[rev_slider alias="loveweekend-header195"]';
-				echo $string;
-				?>
+			<header class="page-header">
+                <p> &nbsp; </p>
 				<h1 class="page-title"><?php printf( __( 'Search Results', 'liquidchurch' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+            </header><!-- .page-header -->
 
 			<?php
 			// Start the loop.
