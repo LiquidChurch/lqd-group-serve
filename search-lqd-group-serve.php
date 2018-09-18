@@ -15,8 +15,14 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 			<!-- .entry-content -->
 				<div class="entry-content">
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'liquidchurch' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
+
+			<header class="page-header"> [rev_slider alias="loveweekend-header195"]
+				<?php
+				$string ='';
+				$string .='[rev_slider alias="loveweekend-header195"]';
+				echo $string;
+				?>
+				<h1 class="page-title"><?php printf( __( 'Search Results', 'liquidchurch' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
 			</header><!-- .page-header -->
 
 			<?php

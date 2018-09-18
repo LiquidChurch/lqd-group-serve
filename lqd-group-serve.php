@@ -175,6 +175,7 @@ class LQD_Group_Serve_CPT {
 		$args = array(
 			'description'   => 'Group Service Opportunities at Liquid Church.',
 			'has_archive'   => true,
+			'with_front'    => false,
 			'hierarchical'  => true,
 			'labels'        => $labels,
 			'menu_icon'     => 'dashicons-calendar',
@@ -216,6 +217,7 @@ function lqd_register_taxonomy_project_type() {
     // Define taxonomy
 	$args = array(
 		'hierarchical'            => true,
+		'with_front'              => false,
 		'labels'                  => $labels,
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
@@ -254,6 +256,7 @@ function lqd_register_taxonomy_project_dow() {
 	// Define taxonomy
 	$args = array(
 		'hierarchical'            => true,
+		'with_front'              => false,
 		'labels'                  => $labels,
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
@@ -261,6 +264,7 @@ function lqd_register_taxonomy_project_dow() {
 		'rewrite'                 => array( 'slug' => 'DOW' ),
 		'capabilities'            => $capabilities,
 		'map_meta_cap'            => 'true'
+
 	);
 
 	// Register taxonomy.
