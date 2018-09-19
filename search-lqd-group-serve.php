@@ -11,7 +11,7 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-            <div><p> &nbsp; </p>
+            <div><p> &nbsp; </p><p> &nbsp; </p>
 			<?php  echo do_shortcode( '[rev_slider alias="loveweekend"]' ); ?>
 			<?php echo do_shortcode( '[searchandfilter slug="group-server-search"]' ); ?><p> &nbsp; </p>
             </div>
@@ -21,6 +21,7 @@ get_header(); ?>
 
 			<header class="page-header">
                 <p> &nbsp; </p>
+                <!-- remove header ....
 				<h1 class="page-title"><?php printf( __( 'Search Results', 'liquidchurch' ), '<span>' . esc_html( get_search_query() ) . '</span>' ); ?></h1>
             </header><!-- .page-header -->
 
@@ -28,14 +29,17 @@ get_header(); ?>
 			// Start the loop.
 			while ( have_posts() ) : the_post();
 
+
 				/**
 				 * Run the loop for the search to output the results.
 				 * If you want to overload this in a child theme then include a file
 				 * called content-search.php and that will be used instead.
 				 */
 				get_template_part( 'template-parts/content-lqd-group-serve', 'search' );
+				//get_template_part( 'template-parts/content-lqd-group-serve');
 
-			// End the loop.
+
+				// End the loop.
 			endwhile;
 
 			// Previous/next page navigation.
