@@ -12,7 +12,7 @@ get_header(); ?>
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
             <div><p> &nbsp; </p>
-			<?php  echo do_shortcode( '[rev_slider alias="loveweekend-header195"]' ); ?>
+			<?php  echo do_shortcode( '[rev_slider alias="loveweekend"]' ); ?>
 			<?php echo do_shortcode( '[searchandfilter slug="group-server-search"]' ); ?><p> &nbsp; </p>
             </div>
 		<?php if ( have_posts() ) : ?>
