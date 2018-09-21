@@ -6,7 +6,7 @@
  * @subpackage Liquid_Churchn
  * @since Liquid Church 1.0
  */
-/** content-lqd-group-serve.php
+/** content-lqdoutreach.php
  * 8/4/2018 ver 0.5 GC */
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -39,7 +39,6 @@
         $terms = '<p style= "min-height:40px; max-width: 55%;"><a class="blue_btn" style="width:200px;float: left;" href=';
         $string .= $terms;
         $terms = get_field('sign_up_to_serve');
-        $string .= $terms;
         $string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
         /*}*/
         echo $string;

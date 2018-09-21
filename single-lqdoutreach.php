@@ -22,8 +22,8 @@ get_header(); ?>
 		{
 
 			// Include the single post content template.
-			get_template_part( 'template-parts/content-lqd-group-serve', 'single' );
-			//get_template_part( 'template-parts/content-lqd-group-serve');
+			get_template_part( plugins_url( 'lqd-group-serve' .'template-parts/content-lqdoutreach', 'single' ));
+			//get_template_part( 'template-parts/content-lqdoutreach');
 
 
 			// If comments are open or we have at least one comment, load up the comment template.
@@ -31,14 +31,14 @@ get_header(); ?>
 				comments_template();
 			}
 
-			//if ( is_singular( 'lqd-group-serve' ) ) {
+			//if ( is_singular( 'lqdoutreach' ) ) {
 			    if ( is_singular( 'attachment' ) ) {
 					// Parent post navigation.
 					the_post_navigation( array(
 						'prev_text' => _x( '<span class="meta-nav">Published in</span><span class="post-title">%title</span>', 'Parent post link', 'liquidchurch' ),
 					) );
 				} elseif ( is_singular( 'post' ) ) {
-					//} elseif ( is_singular( 'lqd-group-serve' ) ) {
+					//} elseif ( is_singular( 'lqdoutreach' ) ) {
 					// Previous/next post navigation.
 					the_post_navigation( array(
 						'next_text' => '<span class="meta-nav" aria-hidden="true">' . __( 'Next', 'liquidchurch' ) . '</span> ' .

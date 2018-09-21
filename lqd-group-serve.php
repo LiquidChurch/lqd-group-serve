@@ -2,7 +2,7 @@
 
 /*
 Plugin Name: Liquid Group Serve
-Plugin URI: https://github.com/LiquidChurch/lqd-group-serve
+Plugin URI: https://github.com/LiquidChurch/lqdoutreach
 Description: Creates a Custom Post Type for Group Service Projects.
 Version: 0.0.1
 Author: Liquid Church, Dave Mackey, Gill Crockford
@@ -106,7 +106,7 @@ class LQD_Group_Serve_CPT {
     );
 
     // Create our Group Serve role and assign the custom capabilities to it
-    add_role( 'group_serve_editor', __( 'Group Serve Editor', 'lqd-group-serve' ), $customCaps );
+    add_role( 'group_serve_editor', __( 'Group Serve Editor', 'lqdoutreach' ), $customCaps );
 
     // Add custom capabilities to Admin and Editor Roles
      $roles = array( 'administrator', 'editor' );
@@ -140,20 +140,20 @@ class LQD_Group_Serve_CPT {
 	function lqd_group_serve_cpt() {
 		// Define the labels for CPT.
 		$labels = array(
-			'name'               => _x ('Service Projects', 'post type general name', 'lqd-group-serve' ),
-			'singular_name'      => _x ('Service Project', 'post type singular name', 'lqd-group-serve' ),
-			'manu_name'          => _x ('Service Projects', 'admin menu', 'lqd-group-serve'),
-			'name_admin_bar'     => _x ('Service Projects', 'lqd-group-serve' ),
-			'add_new'            => _x ('Add New', 'projects', 'lqd-group-serve' ),
-			'add_new_item'       => _x ('Add New Project', 'lqd-group-serve' ),
-			'new_item'           => _x ('New Project', 'lqd-group-serve' ),
-			'edit_item'          => _x ('Edit Project', 'lqd-group-serve' ),
-			'view_item'          => _x ('View Project', 'lqd-group-serve' ),
-			'all_items'          => _x ('All Projects', 'lqd-group-serve' ),
-			'search_items'       => _x ('Search Projects', 'lqd-group-serve' ),
-			'parent_item_colon'  => _x ('Parent Projects:', 'lqd-group-serve' ),
-			'not_found'          => _x ('No project found.', 'lqd-group-serve' ),
-			'not_found_in_trash' => _x ('No project found in Trash.', 'lqd-group-serve' ),
+			'name'               => _x ('Service Projects', 'post type general name', 'lqdoutreach' ),
+			'singular_name'      => _x ('Service Project', 'post type singular name', 'lqdoutreach' ),
+			'manu_name'          => _x ('Service Projects', 'admin menu', 'lqdoutreach'),
+			'name_admin_bar'     => _x ('Service Projects', 'lqdoutreach' ),
+			'add_new'            => _x ('Add New', 'projects', 'lqdoutreach' ),
+			'add_new_item'       => _x ('Add New Project', 'lqdoutreach' ),
+			'new_item'           => _x ('New Project', 'lqdoutreach' ),
+			'edit_item'          => _x ('Edit Project', 'lqdoutreach' ),
+			'view_item'          => _x ('View Project', 'lqdoutreach' ),
+			'all_items'          => _x ('All Projects', 'lqdoutreach' ),
+			'search_items'       => _x ('Search Projects', 'lqdoutreach' ),
+			'parent_item_colon'  => _x ('Parent Projects:', 'lqdoutreach' ),
+			'not_found'          => _x ('No project found.', 'lqdoutreach' ),
+			'not_found_in_trash' => _x ('No project found in Trash.', 'lqdoutreach' ),
 		);
 
 		// Define CPT.
@@ -181,14 +181,14 @@ class LQD_Group_Serve_CPT {
 			'menu_icon'     => 'dashicons-calendar',
 			'menu_position' => 31,
 			'public'        => true,
-			'rewrite'       => 'lqd-group-serve',
+			'rewrite'       => 'lqdoutreach',
 			'supports'      => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'post-formats' ),
             'capabilities'  => $capabilities,
             'map_meta_cap' => true,
 		);
 
 		// Register CPT.
-		register_post_type( 'lqd-group-serve', $args );
+		register_post_type( 'lqdoutreach', $args );
 	}
 }
 
@@ -228,7 +228,7 @@ function lqd_register_taxonomy_project_type() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'project-type', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'project-type', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_dow() {
@@ -268,7 +268,7 @@ function lqd_register_taxonomy_project_dow() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'DOW', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'DOW', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_location() {
@@ -306,7 +306,7 @@ function lqd_register_taxonomy_project_location() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'project_location', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'project_location', array( 'lqdoutreach' ), $args );
 }
 
 
@@ -344,7 +344,7 @@ function lqd_register_taxonomy_project_dates() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'date', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'date', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_family_friendly() {
@@ -381,7 +381,7 @@ function lqd_register_taxonomy_project_family_friendly() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'family_friendly', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'family_friendly', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_host_organization() {
@@ -418,7 +418,7 @@ function lqd_register_taxonomy_project_host_organization() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'Host-Org', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'Host-Org', array( 'lqdoutreach' ), $args );
 }
 
 /* This is now a custom field */
@@ -456,7 +456,7 @@ function lqd_register_taxonomy_project_host_url() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'Host-URL', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'Host-URL', array( 'lqdoutreach' ), $args );
 }
 
 
@@ -495,7 +495,7 @@ function lqd_register_taxonomy_project_occurs() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'occurs', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'occurs', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_team_size() {
@@ -533,7 +533,7 @@ function lqd_register_taxonomy_project_team_size() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'team-size', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'team-size', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_SN_friendly() {
@@ -571,7 +571,7 @@ function lqd_register_taxonomy_project_SN_friendly() {
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'SN_friendly', array( 'lqd-group-serve' ), $args );
+	register_taxonomy( 'SN_friendly', array( 'lqdoutreach' ), $args );
 }
 
 
@@ -585,7 +585,7 @@ add_shortcode('group-serve','group_serve_query');
 
 function group_serve_query() {
     $args = array(
-        'post_type'       => 'lqd-group-serve',
+        'post_type'       => 'lqdoutreach',
         'post_status'     => 'publish',
 	    'posts_per_page'  => '20',
         'order'           => 'ASC',
@@ -619,7 +619,7 @@ add_shortcode('groupserveline','group_serve_query_line');
 
 function group_serve_query_line() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -667,7 +667,7 @@ add_shortcode('group-serve-term','group_serve_query_term');
 
 function group_serve_query_term() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -719,7 +719,7 @@ add_shortcode('groupserveallyrESS','group_serve_query_allyrESS');
 
 function group_serve_query_allyrESS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -811,7 +811,7 @@ add_shortcode('groupserveallyrsignESS','group_serve_query_allyrsignESS');
 
 function group_serve_query_allyrsignESS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -869,7 +869,7 @@ add_shortcode('groupserveallyrMID','group_serve_query_allyrMID');
 
 function group_serve_query_allyrMID() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -920,7 +920,7 @@ add_shortcode('groupserveallyrsignMID','group_serve_query_allyrsignMID');
 
 function group_serve_query_allyrsignMID() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -976,7 +976,7 @@ add_shortcode('groupserveallyrMOR','group_serve_query_allyrMOR');
 
 function group_serve_query_allyrMOR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1027,7 +1027,7 @@ add_shortcode('groupserveallyrsignMOR','group_serve_query_allyrsignMOR');
 
 function group_serve_query_allyrsignMOR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1083,7 +1083,7 @@ add_shortcode('groupserveallyrSOM','group_serve_query_allyrSOM');
 
 function group_serve_query_allyrSOM() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1134,7 +1134,7 @@ add_shortcode('groupserveallyrsignSOM','group_serve_query_allyrsignSOM');
 
 function group_serve_query_allyrsignSOM() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1190,7 +1190,7 @@ add_shortcode('groupserveallyrGAR','group_serve_query_allyrGAR');
 
 function group_serve_query_allyr() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1241,7 +1241,7 @@ add_shortcode('groupserveallyrsignGAR','group_serve_query_allyrsignGAR');
 
 function group_serve_query_allyrsignGAR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1297,7 +1297,7 @@ add_shortcode('groupserveallyrMTS','group_serve_query_allyrMTS');
 
 function group_serve_query_allyrMTS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1351,7 +1351,7 @@ add_shortcode('groupserveallyrsignMTS','group_serve_query_allyrsignMTS');
 
 function group_serve_query_allyrsignMTS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1413,7 +1413,7 @@ add_shortcode('groupserve_lweESS','group_serve_query_lweESS');
 
 function group_serve_query_lweESS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1505,7 +1505,7 @@ add_shortcode('groupserve_lwesignESS','group_serve_query_lwesignESS');
 
 function group_serve_query_lwesignESS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1547,7 +1547,6 @@ function group_serve_query_lwesignESS() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -1562,7 +1561,7 @@ add_shortcode('groupserve_lweMID','group_serve_query_lweMID');
 
 function group_serve_query_lweMID() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1613,7 +1612,7 @@ add_shortcode('groupserve_lwesignMID','group_serve_query_lwesignMID');
 
 function group_serve_query_lwesignMID() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1654,7 +1653,6 @@ function group_serve_query_lwesignMID() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -1669,7 +1667,7 @@ add_shortcode('groupserve_lweMOR','group_serve_query_lweMOR');
 
 function group_serve_query_lweMOR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1720,7 +1718,7 @@ add_shortcode('groupserve_lwesignMOR','group_serve_query_lwesignMOR');
 
 function group_serve_query_lwesignMOR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1761,7 +1759,6 @@ function group_serve_query_lwesignMOR() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -1776,7 +1773,7 @@ add_shortcode('groupserve_lweSOM','group_serve_query_lweSOM');
 
 function group_serve_query_lweSOM() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1827,7 +1824,7 @@ add_shortcode('groupserve_lwesignSOM','group_serve_query_lwesignSOM');
 
 function group_serve_query_lwesignSOM() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1868,7 +1865,6 @@ function group_serve_query_lwesignSOM() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -1883,7 +1879,7 @@ add_shortcode('groupserve_lweGAR','group_serve_query_lweGAR');
 
 function group_serve_query_lweGAR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1934,7 +1930,7 @@ add_shortcode('groupserve_lwesignGAR','group_serve_query_lwesignGAR');
 
 function group_serve_query_lwesignGAR() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -1975,7 +1971,6 @@ function group_serve_query_lwesignGAR() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -1990,7 +1985,7 @@ add_shortcode('groupserve_lweMTS','group_serve_query_lweMTS');
 
 function group_serve_query_lweMTS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -2043,7 +2038,7 @@ add_shortcode('groupserve_lwesignMTS','group_serve_query_lwesignMTS');
 
 function group_serve_query_lwesignMTS() {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -2087,7 +2082,6 @@ function group_serve_query_lwesignMTS() {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -2101,7 +2095,7 @@ add_shortcode('groupserve_lwesignMTS_PARAM','group_serve_query_lwesignMTS_PARAM(
 
 function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
 	$args = array(
-		'post_type'       => 'lqd-group-serve',
+		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
 		'posts_per_page'  => '20',
 		'order'           => 'ASC',
@@ -2142,7 +2136,6 @@ function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
 			$terms = '<p style= "min-height:40px; "><a class="blue_btn" style="width:200px;float: left;" href=';
 			$string .= $terms;
 			$terms = get_field('sign_up_to_serve');
-			$string .= $terms;
 			$string .= '"'. $terms . '"'.'target="_blank"> Sign up to serve</a><br/></p><p>&nbsp;</p> ';
 			/*endwhile; */
 		}
@@ -2152,13 +2145,70 @@ function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
 	return $string;
 }
 
+/**
+ * If Archive is LQD Group Serve CPT Load CPT Template.
+ */
+add_filter( 'page_template', 'archive_lqd_group_serve_template' );
+function archive_lqd_group_serve_template( $page_template )
+{
+	if ( is_post_type_archive( 'lqdoutreach')) {
+		$page_template = dirname( __FILE__ ) . '/archive-lqdoutreach.php';
+	}
+	return $page_template;
+}
 
+/**
+ * If Single is LQD Group Serve CPT Load CPT Template.
+ */
+add_filter( 'page_template', 'single_lqd_group_serve_template' );
+function single_lqd_group_serve_template( $page_template )
+{
+	if ( is_singular( 'lqdoutreach' )) {
+		$page_template = dirname( __FILE__ ) . '/single-lqdoutreach.php';
+	}
+	return $page_template;
+}
 
+/**
+ * If Search is LQD Group Serve CPT Load CPT Template.
+ */
+add_filter( 'page_template', 'search_lqd_group_serve_template' );
+function search_lqd_group_serve_template( $page_template )
+{
+	if ( is_singular( 'lqdoutreach' )) {
+		$page_template = dirname( __FILE__ ) . '/search-lqdoutreach.php';
+	}
+	return $page_template;
+}
 
+/**
+ * If Search is LQD Group Serve Custom Taxonomy, Load Custom Template.
+ */
+add_filter('template_include', 'project_locations_lqd_group_serve_template');
+//add_filter( 'taxonomy_template', 'project_locations_lqd_group_serve_template' );
+function project_locations_lqd_group_serve_template( $template )
+{
+	$lqdtaxonomies = array( 'project_location', 'DOW', 'family_friendly', 'SN_friendly' );
+	if ( is_tax( $lqdtaxonomies )) {
+		//$template = plugins_url( 'lqd-group-serve' . '/taxonomy-project_location.php');
+		//$template = dirname( __FILE__ ) . '/taxonomy-project_location.php';
+		$template = dirname( __FILE__ ) . '/taxonomy-lqdoutreach.php';
+	}
+	return $template;
+}
 
+/**
+ * Add Lqd Group Serve CSS Styles
+ */
+add_action( 'wp_enqueue_scripts', 'callback_for_setting_up_scripts' );
+function callback_for_setting_up_scripts() {
+	//$css_location = plugins_url( 'lqd-group-serve' . '/css/style.css' );
+	wp_enqueue_style( 'lqdoutreach-css', plugins_url( 'lqd-group-serve/css/style.css', array(),'0.9.4' ));
+	//wp_register_style( 'lqdoutreach-css', $css_location);
+	//wp_enqueue_style( 'lqdoutreach-css');
+}
 
-
-// Register lqd-group-serve-cpt
+// Register lqdoutreach-cpt
 
 register_activation_hook( __FILE__, array( &$LQD_Group_Serve_CPT, 'plugin_activation' ) );
 register_deactivation_hook( __FILE__, array( &$LQD_Group_Serve_CPT, 'plugin_deactivation' ) );

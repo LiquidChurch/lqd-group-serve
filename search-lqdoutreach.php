@@ -35,8 +35,9 @@ get_header(); ?>
 				 * If you want to overload this in a child theme then include a file
 				 * called content-search.php and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content-lqd-group-serve', 'search' );
-				//get_template_part( 'template-parts/content-lqd-group-serve');
+				//get_template_part( plugins_url( 'lqd-group-serve' . 'template-parts/content-lqdoutreach', 'search' ));
+				get_template_part( 'template-parts/content-lqdoutreach', 'search' );
+				//get_template_part( 'template-parts/content-lqdoutreach');
 
 
 				// End the loop.
@@ -55,7 +56,7 @@ get_header(); ?>
 <?php
 		// If no content, include the "No posts found" template.
 		else :
-			get_template_part( 'template-parts/content', 'none' );
+			get_template_part( plugins_url( 'lqd-group-serve' . 'template-parts/content-none-lqdoutreach' ));
 
 		endif;
 		?>

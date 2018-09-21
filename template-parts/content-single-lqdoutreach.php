@@ -2,7 +2,7 @@
 /**
  * The template part for displaying individual group serve
  * event listings on an archive page.
- * content-single-lqd-group-serve.php
+ * content-single-lqdoutreach.php
  * @package WordPress
  * @subpackage Liquid Group Serve
  * @since Liquid Group Serve 0.5
