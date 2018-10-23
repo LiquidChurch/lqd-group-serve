@@ -89,10 +89,10 @@ class LQD_Group_Serve_CPT {
             'delete_project_host_organization'          => true,
             'assign_project_host_organization'          => true,
             // Permissions for Project occurs Taxonomy
-            'manage_project_occurences'     => true,
-            'edit_project_occurences'       => true,
-            'delete_project_occurences'     => true,
-            'assign_project_occurences'     => true,
+            'manage_project_grouping'     => true,
+            'edit_project_grouping'       => true,
+            'delete_project_grouping'     => true,
+            'assign_project_grouping'     => true,
             // Permissions for teamsize Taxonomy
             'manage_project_team_sizes'     => true,
             'edit_project_team_sizes'       => true,
@@ -463,24 +463,24 @@ function lqd_register_taxonomy_project_host_url() {
 function lqd_register_taxonomy_project_occurs() {
 	// Define labels for taxonomy Project Occurs: Year round, Love Week, Christmas Outreach, One Off
 	$labels = array(
-		'name'              => _x( 'Occurs', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Occurs', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search Occurences' ),
-		'all_items'         => __( 'All Occurences' ),
+		'name'              => _x( 'Grouping', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Grouping', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Groupings' ),
+		'all_items'         => __( 'All Groupings' ),
 		'parent_item'       => null,
 		'parent_item_colon' => null,
-		'edit_item'         => __( 'Edit occurence' ),
-		'update_item'       => __( 'Update occurence' ),
-		'add_new_item'      => __( 'Add occurences' ),
-		'new_item_name'     => __( 'New occurence Name' ),
-		'menu_name'         => __( 'Occurence' ),
+		'edit_item'         => __( 'Edit grouping' ),
+		'update_item'       => __( 'Update grouping' ),
+		'add_new_item'      => __( 'Add grouping' ),
+		'new_item_name'     => __( 'New grouping Name' ),
+		'menu_name'         => __( 'Grouping' ),
 	);
 	// Define taxonomy
 	$capabilities = array (
-		'manage_terms'          => 'manage_project_occurences',
-		'edit_terms'            => 'edit_project_occurences',
-		'delete_terms'          => 'delete_project_occurences',
-		'assign_terms'          => 'assign_project_occurences'
+		'manage_terms'          => 'manage_project_grouping',
+		'edit_terms'            => 'edit_project_grouping',
+		'delete_terms'          => 'delete_project_grouping',
+		'assign_terms'          => 'assign_project_grouping'
 	);
 
 	$args = array(
