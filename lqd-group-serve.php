@@ -8,6 +8,9 @@ Version: 0.0.1
 Author: Liquid Church, Dave Mackey, Gill Crockford
 Author URI: http://www.liquidchurch.com/
 License: GPL2
+
+Version: 0.0.2
+Renamed occurs taxonomy as grouping
 */
 
 class LQD_Group_Serve_CPT {
@@ -24,7 +27,7 @@ class LQD_Group_Serve_CPT {
 		add_action( 'init', 'lqd_register_taxonomy_project_dow' );
 		add_action( 'init', 'lqd_register_taxonomy_project_family_friendly' );
 		add_action( 'init', 'lqd_register_taxonomy_project_SN_friendly');
-		add_action( 'init', 'lqd_register_taxonomy_project_occurs' );
+		add_action( 'init', 'lqd_register_taxonomy_project_grouping' );
         add_action( 'init', 'lqd_register_taxonomy_project_type' );
 		add_action( 'init', 'lqd_register_taxonomy_project_dates' );
         add_action( 'init', 'lqd_register_taxonomy_project_host_url' );
@@ -88,11 +91,11 @@ class LQD_Group_Serve_CPT {
             'edit_project_host_organization'            => true,
             'delete_project_host_organization'          => true,
             'assign_project_host_organization'          => true,
-            // Permissions for Project occurs Taxonomy
-            'manage_project_occurences'     => true,
-            'edit_project_occurences'       => true,
-            'delete_project_occurences'     => true,
-            'assign_project_occurences'     => true,
+            // Permissions for Project grouping Taxonomy
+            'manage_project_grouping'     => true,
+            'edit_project_grouping'       => true,
+            'delete_project_grouping'     => true,
+            'assign_project_grouping'     => true,
             // Permissions for teamsize Taxonomy
             'manage_project_team_sizes'     => true,
             'edit_project_team_sizes'       => true,
@@ -460,27 +463,27 @@ function lqd_register_taxonomy_project_host_url() {
 }
 
 
-function lqd_register_taxonomy_project_occurs() {
-	// Define labels for taxonomy Project Occurs: Year round, Love Week, Christmas Outreach, One Off
+function lqd_register_taxonomy_project_grouping() {
+	// Define labels for taxonomy Project grouping: Year round, Love Week, Christmas Outreach, One Off
 	$labels = array(
-		'name'              => _x( 'Occurs', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Occurs', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search Occurences' ),
-		'all_items'         => __( 'All Occurences' ),
+		'name'              => _x( 'grouping', 'taxonomy general name' ),
+		'singular_name'     => _x( 'grouping', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search groupings' ),
+		'all_items'         => __( 'All groupings' ),
 		'parent_item'       => null,
 		'parent_item_colon' => null,
-		'edit_item'         => __( 'Edit occurence' ),
-		'update_item'       => __( 'Update occurence' ),
-		'add_new_item'      => __( 'Add occurences' ),
-		'new_item_name'     => __( 'New occurence Name' ),
-		'menu_name'         => __( 'Occurence' ),
+		'edit_item'         => __( 'Edit grouping' ),
+		'update_item'       => __( 'Update grouping' ),
+		'add_new_item'      => __( 'Add grouping' ),
+		'new_item_name'     => __( 'New grouping Name' ),
+		'menu_name'         => __( 'Grouping' ),
 	);
 	// Define taxonomy
 	$capabilities = array (
-		'manage_terms'          => 'manage_project_occurences',
-		'edit_terms'            => 'edit_project_occurences',
-		'delete_terms'          => 'delete_project_occurences',
-		'assign_terms'          => 'assign_project_occurences'
+		'manage_terms'          => 'manage_project_grouping',
+		'edit_terms'            => 'edit_project_grouping',
+		'delete_terms'          => 'delete_project_grouping',
+		'assign_terms'          => 'assign_project_grouping'
 	);
 
 	$args = array(
@@ -489,17 +492,17 @@ function lqd_register_taxonomy_project_occurs() {
 		'show_ui'                 => true,
 		'show_admin_column'       => true,
 		'query_var'               => true,
-		'rewrite'                 => array( 'slug' => 'occurs' ),
+		'rewrite'                 => array( 'slug' => 'grouping' ),
 		'capabilities'            => $capabilities,
 		'map_meta_cap'            => 'true'
 	);
 
 	// Register taxonomy.
-	register_taxonomy( 'occurs', array( 'lqdoutreach' ), $args );
+	register_taxonomy( 'grouping', array( 'lqdoutreach' ), $args );
 }
 
 function lqd_register_taxonomy_project_team_size() {
-	// Define labels for taxonomy Project Occurs: Year round, Love Week, Christmas Outreach, One Off
+	// Define labels for taxonomy Project grouping: Year round, Love Week, Christmas Outreach, One Off
 	$labels = array(
 		'name'              => _x( 'Team size', 'taxonomy general name' ),
 		'singular_name'     => _x( 'Team size', 'taxonomy singular name' ),
@@ -600,7 +603,7 @@ function group_serve_query() {
             $query->the_post();
             $string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a>, '. get_the_content() . '</li>';
 	        //Returns All Term Items for "my_taxonomy"
-	        $terms = get_the_term_list($query->ID, 'occurs', '<li>', '</li><li>', '</li>');
+	        $terms = get_the_term_list($query->ID, 'grouping', '<li>', '</li><li>', '</li>');
 	        //print_r($terms);
 	        $string .=$terms;
 	       $terms = get_the_term_list($query->ID, 'team-size', '<li>', '</li><li>', '</li>');
@@ -651,7 +654,7 @@ function group_serve_query_line() {
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'Host-Org', '<br/>    Host Organization: ', '', '');
 			$string .=$terms;
-			$terms = get_the_term_list($query->ID, 'occurs', ' Occurs: ', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, 'grouping', ' grouping: ', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
 			$string .=$terms . '</li><br/> <br/>';
@@ -681,7 +684,7 @@ function group_serve_query_term() {
 			$query->the_post();
 			$string .= '<li><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a> </li>';
 			//Returns All Term Items for "my_taxonomy"
-			$terms = get_the_term_list($query->ID, '<li> occurs', '<p> Occurs:', ' : ', ' : ');
+			$terms = get_the_term_list($query->ID, '<li> grouping', '<p> grouping:', ' : ', ' : ');
 			$string .=$terms;
 			$terms = get_the_term_list($query->ID, 'team-size', 'Team size: ', ' : ', ' : ');
 			$string .=$terms;
@@ -725,7 +728,7 @@ function group_serve_query_allyrESS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'year round',
 				),
@@ -789,7 +792,7 @@ function group_serve_query_allyrESS() {
 			//$string .= 'Team size: ' . $terms .'<br/>';
 	//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 	//$string .=$terms;
-	//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+	//$terms = get_the_term_list($id, 'grouping', ' grouping: ', ' : ', ' : ');
 	//$string .=$terms;
 	//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
 	//$string .=$terms;
@@ -817,7 +820,7 @@ function group_serve_query_allyrsignESS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'year round',
 			),
@@ -875,7 +878,7 @@ function group_serve_query_allyrMID() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'year round',
 			),
@@ -926,7 +929,7 @@ function group_serve_query_allyrsignMID() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'year round',
 			),
@@ -982,7 +985,7 @@ function group_serve_query_allyrMOR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1033,7 +1036,7 @@ function group_serve_query_allyrsignMOR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1089,7 +1092,7 @@ function group_serve_query_allyrSOM() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 				),
@@ -1140,7 +1143,7 @@ function group_serve_query_allyrsignSOM() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1196,7 +1199,7 @@ function group_serve_query_allyr() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1247,7 +1250,7 @@ function group_serve_query_allyrsignGAR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1303,7 +1306,7 @@ function group_serve_query_allyrMTS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1357,7 +1360,7 @@ function group_serve_query_allyrsignMTS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'Year Round',
 			),
@@ -1419,7 +1422,7 @@ function group_serve_query_lweESS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1483,7 +1486,7 @@ function group_serve_query_lweESS() {
 			//$string .= 'Team size: ' . $terms .'<br/>';
 			//$terms = get_the_term_list($query->ID, 'Host-Org', '    Host Organization: ', '', ' : ');
 			//$string .=$terms;
-			//$terms = get_the_term_list($id, 'occurs', ' Occurs: ', ' : ', ' : ');
+			//$terms = get_the_term_list($id, 'grouping', ' grouping: ', ' : ', ' : ');
 			//$string .=$terms;
 			//$terms = get_the_term_list($query->ID, 'date', 'Dates: ', ' : ', '');
 			//$string .=$terms;
@@ -1511,7 +1514,7 @@ function group_serve_query_lwesignESS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1567,7 +1570,7 @@ function group_serve_query_lweMID() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1618,7 +1621,7 @@ function group_serve_query_lwesignMID() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1673,7 +1676,7 @@ function group_serve_query_lweMOR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1724,7 +1727,7 @@ function group_serve_query_lwesignMOR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1779,7 +1782,7 @@ function group_serve_query_lweSOM() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1830,7 +1833,7 @@ function group_serve_query_lwesignSOM() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1885,7 +1888,7 @@ function group_serve_query_lweGAR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1936,7 +1939,7 @@ function group_serve_query_lwesignGAR() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -1991,7 +1994,7 @@ function group_serve_query_lweMTS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -2044,7 +2047,7 @@ function group_serve_query_lwesignMTS() {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
 				'terms' => 'love-weekend',
 			),
@@ -2093,7 +2096,7 @@ function group_serve_query_lwesignMTS() {
 
 add_shortcode('groupserve_lwesignMTS_PARAM','group_serve_query_lwesignMTS_PARAM()');
 
-function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
+function group_serve_query_lwesignMTS_PARAM($grouping='',$CAMPUS='') {
 	$args = array(
 		'post_type'       => 'lqdoutreach',
 		'post_status'     => 'publish',
@@ -2101,9 +2104,9 @@ function group_serve_query_lwesignMTS_PARAM($OCCURS='',$CAMPUS='') {
 		'order'           => 'ASC',
 		'tax_query' => array(
 			array(
-				'taxonomy' => 'occurs',
+				'taxonomy' => 'grouping',
 				'field' => 'slug',
-				'terms' => $OCCURS,
+				'terms' => $grouping,
 			),
 			array(
 				'taxonomy' => 'project_location',
